@@ -1,0 +1,28 @@
+
+{"navlinks__img" : 
+    {"class" : "navbar__logo__img" ,
+     "href" : "https://www.ableton.com/en/", 
+     "src" : "https://icon-library.com/images/ableton-icon/ableton-icon-17.jpg"},
+
+"navlinks" : [
+    {"class": "navbar_link",
+      "title": "Push",
+      "href": "https://www.ableton.com/en/push/"
+    },
+    {"class": "navbar_link",
+        "title": "Link",
+        "href": "https://www.ableton.com/en/link/"
+    }, 
+    {"class": "navbar_link",
+    "title" : "Shop",
+    "href" : "https://www.ableton.com/en/shop/"
+    },
+    {"class": "navbar_link",
+        "title" : "Packs",
+        "href" : "https://www.ableton.com/en/packs/"
+    },
+    {"class": "navbar_link",
+    "title" : "Help",
+    "href" : "https://www.ableton.com/en/help/"
+    }
+    ]}
