@@ -1,0 +1,18 @@
+<nav class="nav_content">
+  <div class="navbar__list1">
+    <span class="{{navlinks__img.class}}">
+      <a href="{{navlinks__img.href}}"><img class="navbar__logo" src="{{navlinks__img.src}}"></a>
+    </span>
+    <ul>
+
+      {% for navlink in navlinks %}
+        <li>
+          <a class="{{navlink.class}}" href="{{navlink.href}}">{{navlink.title}}</a>
+        </li>
+      {% endfor %}
+      <li>
+        <button class="navbar__link__button"> More <span class="navbar__link__txt"> + </span></button>
+      </li>
+    </ul>
+  </div>
+</nav>
