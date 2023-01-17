@@ -1,0 +1,99 @@
+.navbar__separator {
+    border-top: 2px solid #eee;
+    margin: 0px 0px 0px 0px;
+  }
+  .login-register,
+  .create-account {
+    padding-left: 8vw;
+    padding-right: 8vw;
+    position: relative;
+  }
+  .login-register__title {
+    font-size: 40px;
+    padding: 20px 0px;
+  }
+  .login-register__separator {
+    border-top: 2px solid #eee;
+    margin: 0px 0px 24px 0px;
+  }
+  .login-register__email__input {
+    padding: 20px 0px;
+  }
+  .login-register__input input {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #eee;
+  }
+  .password__input__text {
+    display: flex;
+    justify-content: space-between;
+  }
+  .password__forget {
+    color: blue;
+  }
+  .login-register__submit__button button {
+    padding: 5px 20px;
+    color: white;
+    background: blue;
+  }
+  .login-register__submit__button {
+    padding: 25px 0px;
+  }
+  .create-account__title {
+    font-size: 40px;
+  }
+  .create-account__separator {
+    border-top: 2px solid #eee;
+    margin: 24px 0px 24px 0px;
+  }
+  .create-account__input__text {
+    padding: 10px 0px 10px;
+  }
+  .create-account__input input {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #eee;
+  }
+  .create-account__first-name__help {
+    padding: 20px 0px 0px 0px;
+    color: #00a2b0;
+  }
+  #id_country {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #eee;
+  }
+  
+  .create-account__input__newsletter input {
+    width: 5%;
+  }
+  
+  .create-account__newsletter__link {
+    color: blue;
+  }
+  .create-account__button button {
+    padding: 5px 20px;
+    color: white;
+    background: blue;
+  }
+  .create-account__button {
+    padding: 20px 0px;
+  }
+  
+  @media (min-width: 768px) {
+    .section-login {
+      display: flex;
+    }
+    .login-register,
+    .create-account {
+      padding-left: 4.5vw;
+      padding-right: 4.5vw;
+    }
+    .create-account {
+      padding-top: 16px;
+    }
+  }
+  .footer__separator {
+    border-top: 2px solid #eee;
+    margin: 30px 0px 30px 0px;
+  }

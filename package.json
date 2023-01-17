@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "generate": "node src/index.js"
+  },
   "dependencies": {
+    "browser-sync": "^2.27.11",
     "nunjucks": "^3.2.3"
   }
 }

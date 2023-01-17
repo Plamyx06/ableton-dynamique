@@ -4,7 +4,6 @@
     "href": "https://www.ableton.com/en/",
     "src": "https://icon-library.com/images/ableton-icon/ableton-icon-17.jpg"
   },
-
   "navlinks": [
     {
       "title": "Push",
@@ -85,22 +84,94 @@
   },
   "blogTeaserCell": [
     {
+      "class": "blog-teaser__cell",
       "category": "Loop",
       "headline": "Get Together: The Changing Forms of Musical Collaboration",
       "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_image_U9FK8pM.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
       "href": "/en/blog/get-together-the-changing-forms-of-musical-collaboration/"
     },
     {
+      "class": "blog-teaser__cell2",
       "category": "Loop",
       "headline": "Loop: Five Perspectives on Working with Environmental Noise",
       "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_hero_image_800x400.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
       "href": "https://www.ableton.com/en/blog/loop-five-perspectives-on-working-with-environmental-noise/"
     },
     {
+      "class": "blog-teaser__cell3",
       "category": "Loop",
       "headline": "Loop Session: In the Studio with Grand River",
       "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_image_U9FK8pM.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
       "href": "https://www.ableton.com/en/blog/catch-up-on-the-first-loop-session-with-grand-river/"
+    }
+  ],
+  "panelBlog2nav": [
+    {
+      "title": "All posts",
+      "href": "https://ableton.com/en/blog/"
+    },
+    {
+      "title": "Artists",
+      "href": "https://www.ableton.com/en/blog/categories/artists/"
+    },
+    {
+      "title": "News",
+      "href": "https://www.ableton.com/en/blog/categories/news/"
+    },
+    {
+      "title": "Downloads",
+      "href": "https://www.ableton.com/en/blog/categories/downloads/"
+    },
+    {
+      "title": "Tutorials",
+      "href": "https://www.ableton.com/en/blog/categories/tutorials/"
+    },
+    {
+      "title": "Videos",
+      "href": "https://www.ableton.com/en/blog/categories/videos/"
+    },
+    {
+      "title": "Loop",
+      "href": "https://www.ableton.com/en/blog/loop/"
+    },
+    {
+      "title": "One Thing",
+      "href": "https://www.ableton.com/en/one-thing/"
+    }
+  ],
+  "mainFooter1": {
+    "title": "Sign up to our newsletter",
+    "helpTxt": "Enter your email address to stay up to date with the latest offers, tutorials, downloads, surveys and more.",
+    "placeholder": "Email Address",
+    "button": "Sign up"
+  },
+  "mainFooter2": [
+    {
+      "title": "Register Live or Push >",
+      "href": "https://www.ableton.com/en/login/?next=/en/account/add_license/"
+    },
+    {
+      "title": "About Ableton >",
+      "href": "https://www.ableton.com/en/about/"
+    },
+    {
+      "title": "Jobs >",
+      "href": "https://www.ableton.com/en/jobs/"
+    }
+  ],
+  "Footer3": { "mainTitle": "Education" },
+  "mainFooter3": [
+    {
+      "title": "Offers for students and teachers >",
+      "href": "https://www.ableton.com/en/shop/education/"
+    },
+    {
+      "title": "Ableton for the classroom >",
+      "href": "https://www.ableton.com/en/classroom/"
+    },
+    {
+      "title": "Ableton for Colleges and Universities >",
+      "href": "https://www.ableton.com/en/colleges-universities/"
     }
   ]
 }
