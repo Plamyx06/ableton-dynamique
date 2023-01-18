@@ -1,7 +1,7 @@
 const nunjucks = require("nunjucks");
-const data = require("./data/contentEn.json");
+const data = require("./data/index.json");
 const fs = require("fs");
-const dataLogin = require("./data/contentEnLogin.json");
+const dataLogin = require("./data/Login.json");
 
 nunjucks.configure({ autoescape: true });
 
@@ -23,11 +23,11 @@ fs.rm("./dist", { recursive: true, force: true }, (err) => {
     });
     fs.copyFile("./src/css/index.css", "./dist/index.css", (err) => {
       if (err) throw err;
-      console.log("Le fichier index.css a été copié!");
+      console.log("The index.css file has been copied!");
     });
     fs.copyFile("./src/css/global.css", "./dist/global.css", (err) => {
       if (err) throw err;
-      console.log("Le fichier global.css a été copié!");
+      console.log("The global.css file has been copied!");
     });
 
     fs.mkdir("./dist/member", function (error) {
@@ -46,7 +46,7 @@ fs.rm("./dist", { recursive: true, force: true }, (err) => {
       });
       fs.copyFile("./src/css/login.css", "./dist/member/login.css", (err) => {
         if (err) throw err;
-        console.log("Le fichier login.css a été copié!");
+        console.log("The login.css file has been copied");
       });
     });
   });

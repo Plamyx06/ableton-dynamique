@@ -144,14 +144,14 @@
   }
   @media (min-width: 1280px) {
     .article1__txt {
-      padding-right: 300px;
-      padding-left: 300px;
+      padding-right: 400px;
+      padding-left: 400px;
     }
   }
   @media (min-width: 1536px) {
     .article1__txt {
-      padding-right: 400px;
-      padding-left: 400px;
+      padding-right: 500px;
+      padding-left: 500px;
     }
   }
   .panel-blog1 {
