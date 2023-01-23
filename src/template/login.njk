@@ -4,9 +4,10 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <title>Ableton/login</title>
+        <title>Login or create account | Ableton</title>
         <link href="https://unpkg.com/tailwindcss@3.1.8/src/css/preflight.css"
       rel="stylesheet"/>
+       <link rel="shortcut icon" type="image/ico" href="https://cdn-resources.ableton.com/80bA26cPQ1hEJDFjpUKntxfqdmG3ZykO/static/images/favicon.f83afbda6c78.ico">
         <link href="/global.css" rel="stylesheet"/>
         <link href="login.css" rel="stylesheet"/>
     </head>
@@ -15,7 +16,8 @@
             {% include "./navbar.njk" %}
         </header>
         <main>
-            <div class="section-login">
+            <div class="account__container">
+                <div class="section-login">
                 <section class="login-register">
                     <div class="login-register__title">
                         <h1>{{loginRegister.title}}
@@ -54,8 +56,8 @@
                         </div>
                     </form>
                 </section>
-            </div>
-            <section class="create-account">
+                </div>
+                <div class="create-account">
                 <div class="create-account__title">
                     <h1>
                         {{createAccount.title}}
@@ -367,7 +369,9 @@
                         </div>
                     </form>
                 </div>
-            </section>
+                </div>
+            </div>
+            <div class="footer__separator"></div>
         </main>
         {% include "./footer.njk" %}
     </body>

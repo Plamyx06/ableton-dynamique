@@ -1,9 +1,4 @@
 {
-  "navlinks__img": {
-    "class": "navbar__logo__img",
-    "href": "https://www.ableton.com/en/",
-    "src": "https://icon-library.com/images/ableton-icon/ableton-icon-17.jpg"
-  },
   "navlinks": [
     {
       "title": "Push",
@@ -23,13 +18,14 @@
       "href": "https://www.ableton.com/en/help/"
     }
   ],
-  "navlinks2": [
-    {
-      "title": "Try live for free",
-      "href": "https://www.ableton.com/en/trial/"
-    },
-    { "title": "Login or register", "href": "/member/login.html" }
-  ],
+  "navlinkTry": {
+    "title": "Try live for free",
+    "href": "https://www.ableton.com/en/trial/"
+  },
+  "navlinkLogIn": {
+    "title": "Login or register",
+    "href": "/member/login.html"
+  },
   "navbarButton": {
     "title": "More",
     "title2": "+",
@@ -101,7 +97,7 @@
       "class": "blog-teaser__cell3",
       "category": "Loop",
       "headline": "Loop Session: In the Studio with Grand River",
-      "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_image_U9FK8pM.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
+      "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/unsorted-uploads/1_blog_loop_session_grand_river_blog.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
       "href": "https://www.ableton.com/en/blog/catch-up-on-the-first-loop-session-with-grand-river/"
     }
   ],

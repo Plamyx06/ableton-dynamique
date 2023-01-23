@@ -4,7 +4,6 @@
     "dev": "http-server ./dist"
   },
   "dependencies": {
-    "browser-sync": "^2.27.11",
     "http-server": "^14.1.1",
     "nunjucks": "^3.2.3"
   }

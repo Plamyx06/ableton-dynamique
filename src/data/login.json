@@ -1,9 +1,4 @@
 {
-  "navlinks__img": {
-    "class": "navbar__logo__img",
-    "href": "https://www.ableton.com/en/",
-    "src": "https://icon-library.com/images/ableton-icon/ableton-icon-17.jpg"
-  },
   "navlinks": [
     {
       "title": "Push",
@@ -23,13 +18,14 @@
       "href": "https://www.ableton.com/en/help/"
     }
   ],
-  "navlinks2": [
-    {
-      "title": "Try live for free",
-      "href": "https://www.ableton.com/en/trial/"
-    },
-    { "title": "Login or register", "href": "/member/login.html" }
-  ],
+  "navlinkTry": {
+    "title": "Try live for free",
+    "href": "https://www.ableton.com/en/trial/"
+  },
+  "navlinkLogIn": {
+    "title": "Login or register",
+    "href": "/member/login.html"
+  },
   "navbarButton": {
     "title": "More",
     "title2": "+",
@@ -57,7 +53,7 @@
     "button": "Create Acccount"
   },
   "createAccountLabel": {
-    "email": "email",
+    "email": "Email",
     "password": "Password",
     "firstName": "First name",
     "firstNamePlaceholder": "Optional",
