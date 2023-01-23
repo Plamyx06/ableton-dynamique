@@ -1,7 +1,7 @@
 const nunjucks = require("nunjucks");
 const data = require("./data/index.json");
 const fs = require("fs");
-const dataLogin = require("./data/Login.json");
+const dataLogin = require("./data/login.json");
 
 nunjucks.configure({ autoescape: true });
 
