@@ -39,7 +39,8 @@
     "pictureSrc": "https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?",
     "title": "Freeze, Delay and Deconstruct – Sound Design with Spectral Time",
     "subtitle": "Watch the video",
-    "subtitleSymbol": ">"
+    "subtitleSymbol": ">",
+    "alt": "spectral-time effect picture"
   },
   "panelBlog1Txt": {
     "content": "The latest from Ableton"
@@ -84,21 +85,24 @@
       "category": "Loop",
       "headline": "Get Together: The Changing Forms of Musical Collaboration",
       "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_image_U9FK8pM.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
-      "href": "/en/blog/get-together-the-changing-forms-of-musical-collaboration/"
+      "href": "/en/blog/get-together-the-changing-forms-of-musical-collaboration/",
+      "alt": "gradient orange picture"
     },
     {
       "class": "blog-teaser__cell2",
       "category": "Loop",
       "headline": "Loop: Five Perspectives on Working with Environmental Noise",
       "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_hero_image_800x400.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
-      "href": "https://www.ableton.com/en/blog/loop-five-perspectives-on-working-with-environmental-noise/"
+      "href": "https://www.ableton.com/en/blog/loop-five-perspectives-on-working-with-environmental-noise/",
+      "alt": "picture of five people on a purple background"
     },
     {
       "class": "blog-teaser__cell3",
       "category": "Loop",
       "headline": "Loop Session: In the Studio with Grand River",
       "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/unsorted-uploads/1_blog_loop_session_grand_river_blog.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
-      "href": "https://www.ableton.com/en/blog/catch-up-on-the-first-loop-session-with-grand-river/"
+      "href": "https://www.ableton.com/en/blog/catch-up-on-the-first-loop-session-with-grand-river/",
+      "alt": "picture of a man and a woman working on a computer and a synthesizer"
     }
   ],
   "panelBlog2nav": [
