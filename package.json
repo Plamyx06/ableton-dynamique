@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "generate": "node src/index.js",
+    "generate": "node src/index.js && html-minifier --input-dir ./dist --output-dir ./dist-out  --collapse-whitespace && rm -r dist && mv dist-out dist",
     "dev": "http-server ./dist"
   },
   "dependencies": {
+    "html-minifier": "^4.0.0",
     "http-server": "^14.1.1",
     "nunjucks": "^3.2.3"
   }
