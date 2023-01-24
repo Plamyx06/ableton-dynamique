@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "generateNoMin": "node src/index.js",
     "generate": "node src/index.js && html-minifier --input-dir ./dist --output-dir ./dist-out  --collapse-whitespace && rm -r dist && mv dist-out dist",
     "dev": "http-server ./dist"
   },
