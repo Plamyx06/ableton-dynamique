@@ -1,45 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <!-- Primary Meta Tags -->
-    <title>{{article1.title}}</title>
-    <meta name="title" content="Freeze, Delay and Deconstruct – Sound Design with Spectral Time">
-    <meta name="description" content="Effect spectral time">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ableton-dynamique-axvz-ijt9eeib0-plamyx06.vercel.app/">
-    <meta property="og:title" content="Freeze, Delay and Deconstruct – Sound Design with Spectral Time">
-    <meta property="og:description" content="Effect spectral time">
-    <meta property="og:image" content="https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ableton-dynamique-axvz-ijt9eeib0-plamyx06.vercel.app/">
-    <meta property="twitter:title" content="Freeze, Delay and Deconstruct – Sound Design with Spectral Time">
-    <meta property="twitter:description" content="Effect spectral time">
-    <meta property="twitter:image" content="https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?">
-    <meta name="robots" content="index">
-    <meta name="theme-color" content="#FFFFFF">
-    <link href="https://unpkg.com/tailwindcss@3.1.8/src/css/preflight.css" rel="stylesheet"/>
-    <link rel="shortcut icon" type="image/ico" href="https://cdn-resources.ableton.com/80bA26cPQ1hEJDFjpUKntxfqdmG3ZykO/static/images/favicon.f83afbda6c78.ico">
-    <link href="index.css" rel="stylesheet"/>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F429EC7EBZ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'G-F429EC7EBZ');
-    </script>
-  </head>
+  {% include "./partial/global.njk" %}
   <body>
     <header class="header">
-      {% include "./navbar.njk" %}
+      {% include "./partial/navbar.njk" %}
     </header>
     <main>
       <div class="article1">
@@ -97,6 +61,6 @@
         </div>
       </section>
     </main>
-    {% include "./footer.njk" %}
+    {% include "./partial/footer.njk" %}
   </body>
 </html>

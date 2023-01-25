@@ -1,4 +1,13 @@
 {
+  "head": {
+    "titleTab": "Creative tools for music makers | Ableton",
+    "openGraphUrl": "https://ableton-dynamique-axvz-ijt9eeib0-plamyx06.vercel.app/",
+    "openGraphTitle": "Freeze, Delay and Deconstruct – Sound Design with Spectral Time",
+    "openGraphDescription": "In his latest video, Seed to Stage explores the Spectral Time device introduced in Live 11, walking you through its many sonic possibilities to create a myriad of trippy sounds, from metallic, glitched-out stutters to washed-out ambience and head-flipping stereo effects.",
+    "openGraphPicture": "https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?",
+    "CSSglobal": "global.css",
+    "CSS": "index.css"
+  },
   "navlinks": [
     {
       "title": "Push",
