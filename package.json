@@ -4,6 +4,7 @@
     "dev": "http-server ./dist"
   },
   "dependencies": {
+    "clean-css": "^5.3.2",
     "html-minifier": "^4.0.0",
     "http-server": "^14.1.1",
     "nunjucks": "^3.2.3"

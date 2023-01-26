@@ -1,53 +1,108 @@
 const nunjucks = require("nunjucks");
 const data = require("./data/index.json");
-const fs = require("fs");
+const fsp = require("fs/promises");
 const dataLogin = require("./data/login.json");
+const htmlMin = require("html-minifier");
+const cleanCSS = require("clean-css");
 
 nunjucks.configure({ autoescape: true });
-
 let templateMenu = nunjucks.render("./src/template/index.njk", data);
-
-fs.rm("./dist", { recursive: true, force: true }, (err) => {
-  if (err) {
+let minifiedIndex = htmlMin.minify(templateMenu, {
+  removeAttributeQuotes: true,
+  collapseWhitespace: true,
+  removeComments: true,
+});
+fsp
+  .rm("./dist", { recursive: true, force: true })
+  .catch((err) => {
     throw err;
-  }
-  fs.mkdir("./dist", function (error) {
-    if (error) {
-      throw error;
-    }
-    fs.writeFile("./dist/index.html", templateMenu, (err) => {
-      if (err) {
+  })
+  .then(() =>
+    fsp.mkdir("./dist").catch((err) => {
+      throw err;
+    })
+  )
+  .then(() => {
+    fsp
+      .writeFile("./dist/index.html", minifiedIndex)
+      .catch((err) => {
         throw err;
-      }
-      console.log(`index.html file created`);
+      })
+      .then(() => {
+        console.log(`index.html file created`);
+      });
+  })
+  .then(() => {
+    fsp
+      .readFile("./src/css/index.css", "utf8")
+      .catch((err) => {
+        throw err;
+      })
+      .then((data) => {
+        let minifiedIndexCSS = new cleanCSS().minify(data).styles;
+        fsp
+          .writeFile("./dist/index.css", minifiedIndexCSS)
+          .catch((err) => {
+            throw err;
+          })
+          .then(() => {
+            console.log("The index.css file has been minified and copied!");
+          });
+      });
+  })
+  .then(() => {
+    fsp
+      .readFile("./src/css/global.css", "utf8")
+      .catch((err) => {
+        throw err;
+      })
+      .then((data) => {
+        let minifiedGlobalCSS = new cleanCSS().minify(data).styles;
+        fsp
+          .writeFile("./dist/global.css", minifiedGlobalCSS)
+          .catch((err) => {
+            throw err;
+          })
+          .then(() => {
+            console.log("The global.css file has been minified and copied!");
+          });
+      });
+  })
+  .then(() => {
+    fsp.mkdir("./dist/member").catch((err) => {
+      throw err;
     });
-    fs.copyFile("./src/css/index.css", "./dist/index.css", (err) => {
-      if (err) throw err;
-      console.log("The index.css file has been copied!");
+  })
+  .then(() => {
+    let templateLogin = nunjucks.render("./src/template/login.njk", dataLogin);
+    let minifiedLogin = htmlMin.minify(templateLogin, {
+      removeAttributeQuotes: true,
+      collapseWhitespace: true,
+      removeComments: true,
     });
-    fs.copyFile("./src/css/global.css", "./dist/global.css", (err) => {
-      if (err) throw err;
-      console.log("The global.css file has been copied!");
-    });
-
-    fs.mkdir("./dist/member", function (error) {
-      if (error) {
-        throw error;
-      }
-      let templateLogin = nunjucks.render(
-        "./src/template/login.njk",
-        dataLogin
-      );
-      fs.writeFile("./dist/member/login.html", templateLogin, (err) => {
-        if (err) {
-          throw err;
-        }
+    fsp
+      .writeFile("./dist/member/login.html", minifiedLogin)
+      .catch((err) => {
+        throw err;
+      })
+      .then(() => {
         console.log(`login.html file created`);
       });
-      fs.copyFile("./src/css/login.css", "./dist/member/login.css", (err) => {
-        if (err) throw err;
-        console.log("The login.css file has been copied");
+
+    fsp
+      .readFile("./src/css/login.css", "utf8")
+      .catch((err) => {
+        throw err;
+      })
+      .then((data) => {
+        let minifiedLoginCSS = new cleanCSS().minify(data).styles;
+        fsp
+          .writeFile("./dist/member/login.css", minifiedLoginCSS)
+          .catch((err) => {
+            throw err;
+          })
+          .then(() => {
+            console.log("The login.css file has been minified and copied!");
+          });
       });
-    });
   });
-});
