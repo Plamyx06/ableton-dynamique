@@ -1,3 +1,21 @@
+<script>
+    document
+        .getElementById("navbar__menu--js")
+        .addEventListener("click", () => {
+            let navOpen = document.getElementById("navbar__js--open");
+            let navClose = document.getElementById("navbar__js--close");
+            navOpen.style.display = "block";
+            navClose.style.display = "none";
+        });
+    document
+        .getElementById("navbar__menu--js--open")
+        .addEventListener("click", () => {
+            let navOpen = document.getElementById("navbar__js--open");
+            let navClose = document.getElementById("navbar__js--close");
+            navOpen.style.display = "none";
+            navClose.style.display = "";
+        });
+</script>
 <nav class="navbar" id="navbar__js--close">
     <div class="navbar__left">
         <div class="navbar__logo__img">
