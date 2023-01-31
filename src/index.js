@@ -81,6 +81,14 @@ fsp
       removeComments: true,
     });
     fsp
+      .copyFile("./src/script/global.js", "./dist/global.js")
+      .catch((err) => {
+        throw err;
+      })
+      .then(() => {
+        console.log("global.js file copied");
+      });
+    fsp
       .writeFile("./dist/member/login.html", minifiedLogin)
       .catch((err) => {
         throw err;
