@@ -4,6 +4,8 @@ const fsp = require("fs/promises");
 const dataLogin = require("./data/login.json");
 const { minify } = require("html-minifier-terser");
 const cleanCSS = require("clean-css-promise");
+const terser = require("terser");
+const minifyJS = terser.minify;
 
 const args = process.argv.slice(2).join("");
 const boolArgsContainDev = argsContainDev(args);
@@ -65,8 +67,27 @@ async function main() {
         minifiedLoginCSS.styles
       ) && console.log("The login.css file has been minified and copied!"));
     }
-    await (fsp.copyFile("./src/script/global.js", "./dist/global.js") &&
-      console.log("global.js file copied"));
+    if (boolArgsContainDev === true) {
+      await (fsp.copyFile("./src/script/global.js", "./dist/global.js") &&
+        console.log("global.js file copied"));
+    } else {
+      const globalJS = await fsp.readFile("./src/script/global.js", "utf-8");
+      const globalJSMinified = await minifyJS(globalJS, {
+        compress: {
+          drop_console: true,
+          unsafe: true,
+        },
+        mangle: {
+          reserved: ["jQuery"],
+        },
+        output: {
+          comments: "some",
+          beautify: false,
+        },
+      }).then((result) => result.code);
+      await fsp.writeFile("./dist/global.js", globalJSMinified);
+      console.log(`global.js file minified and copied!`);
+    }
   } catch (err) {
     throw err;
   }

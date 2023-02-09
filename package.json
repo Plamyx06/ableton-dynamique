@@ -1,13 +1,13 @@
 {
   "scripts": {
-    "generate": "node src/index.js",
-    "dev": "http-server ./dist"
+    "generate": "node src/index.js"
   },
   "dependencies": {
     "clean-css-promise": "^3.0.0",
     "html-minifier": "^4.0.0",
     "html-minifier-terser": "^7.1.0",
     "http-server": "^14.1.1",
-    "nunjucks": "^3.2.3"
+    "nunjucks": "^3.2.3",
+    "terser": "^5.16.3"
   }
 }
