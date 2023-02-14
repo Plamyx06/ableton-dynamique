@@ -17,6 +17,12 @@ body {
   position: absolute;
   top: 70px;
   width: 100%;
+  padding: 0px 15px;
+}
+
+.navbar__more,
+.main-nav__more {
+  padding: 0px 10px;
 }
 
 .navbar__scroll--open {
@@ -29,7 +35,7 @@ body {
   font-size: 20px;
   position: relative;
   display: inline-block;
-  padding: 0px 20px;
+
 }
 
 .main-nav__link-list__link,

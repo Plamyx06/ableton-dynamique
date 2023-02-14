@@ -1,8 +1,9 @@
 window.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.getElementById("menuButton");
-  let navOpenElement = document.getElementById("navbar__js--open");
-  let allNavbarElement = document.getElementById("navbarAll");
-  let logoElement = document.getElementById("main-nav__logo__image--js");
+  const navOpenElement = document.getElementById("navbar__js--open");
+  const allNavbarElement = document.getElementById("navbarAll");
+  const logoElement = document.getElementById("main-nav__logo__image--js");
+  const arrowMenu = document.getElementById("arrowMenu");
 
   menuButton.addEventListener("click", () => {
     const isOpen = menuButton.getAttribute("data-open") === "true";
@@ -23,6 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
     allNavbarElement.style.backgroundColor = "blue";
     navOpenElement.style.backgroundColor = "blue";
     menuButton.setAttribute("data-open", true);
+    arrowMenu.style.transform = `rotate(${180}deg)`;
   }
 
   function closeNavbar() {
@@ -33,5 +35,6 @@ window.addEventListener("DOMContentLoaded", () => {
     allNavbarElement.style.backgroundColor = "";
     navOpenElement.style.backgroundColor = "";
     menuButton.setAttribute("data-open", false);
+    arrowMenu.style.transform = `rotate(${0}deg)`;
   }
 });
