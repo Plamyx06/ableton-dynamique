@@ -1,0 +1,21 @@
+<html lang="en">
+    {% include "./partial/global.njk" %}
+    <body>
+        <header class="header">
+            {% include "./partial/navbar.njk" %}
+        </header>
+        <main>
+
+            <h2>{{article[1].category}}</h2>
+
+            <h1>{{article[1].title}}</h1>
+
+            <p>{{article[1].description}}</p>
+
+            <img src="{{article[1].image}}"/>
+
+            <p>{{article[1].content}}</p>
+
+            <a>{{article[1].tags}}</a>
+
+        </main>

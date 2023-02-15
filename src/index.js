@@ -87,15 +87,9 @@ async function minifyHTML(template, dist) {
     collapseWhitespace: true,
     removeComments: true,
   };
-  try {
-    const minified = await minify(template, minifiedHtmlOption);
-    await fsp.writeFile(dist, minified);
-    console.log(
-      `The file ${path.basename(dist)} has been minified and created.`
-    );
-  } catch (err) {
-    throw err;
-  }
+  const minified = await minify(template, minifiedHtmlOption);
+  await fsp.writeFile(dist, minified);
+  console.log(`The file ${path.basename(dist)} has been minified and created.`);
 }
 
 async function minifiedCSSorJS(srcArray, distArray) {
