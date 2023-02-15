@@ -1,32 +1,21 @@
+import fs from "fs/promises";
 import nunjucks from "nunjucks";
-import fs from "fs";
 
-/*const dataBlog = await fsp
-  .readFile("./src/data/articles.json", "utf8")
-  .then((data) => JSON.parse(data));
+async function generateArticlePage(templateName, destFolder) {
+  const articlesData = await fs.readFile("./src/data/articles.json", "utf-8");
+  const articles = JSON.parse(articlesData).articles;
+  const navData = await fs.readFile("./src/data/index.json", "utf-8");
+  const navbar = JSON.parse(navData).articles;
 
-const templateBlog = nunjucks.render("./src/template/blog.njk", dataBlog);
+  const env = nunjucks.configure("./src/template", { autoescape: true });
 
-await fsp.rm("./dist/blog", { recursive: true, force: true });
-await fsp.mkdir("./dist/blog");
-await fsp.writeFile("./dist/blog/blog.html", templateBlog),
-  console.log("index.html file created");
-*/
-
-// Charger les articles depuis un fichier JSON
-const articles = JSON.parse(fs.readFileSync("./src/data/articles.json"));
-
-// Initialiser Nunjucks
-const env = nunjucks.configure("templates");
-
-// Parcourir tous les articles
-for (let i = 0; i < articles.length; i++) {
-  // Récupérer l'article courant
-  const article = articles[i];
-
-  // Générer le contenu HTML avec la template Nunjucks
-  const html = env.render("article.html", { article: article });
-
-  // Sauvegarder le contenu HTML dans un fichier
-  fs.writeFileSync(`./dist/blog/article-${i + 1}.html`, html);
+  await fs.rm(destFolder, { recursive: true, force: true });
+  await fs.mkdir(destFolder);
+  const html = env.render(templateName, navbar);
+  for (const article of articles) {
+    await fs.writeFile(`${destFolder}/${article.title}.html`, html);
+  }
+  console.info("les articles ont tous était crée");
 }
+
+generateArticlePage("blog.njk", "./dist/blog");
