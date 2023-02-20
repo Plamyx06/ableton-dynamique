@@ -4,18 +4,59 @@
         <header class="header">
             {% include "./partial/navbar.njk" %}
         </header>
-        <main>
+        <body>
+            <nav class="navbar-primary">
+                <div class=navbar-primary__main-container>
+                    <div class="navbar-primary__container">
+                        <a class="navbar-primary__txt " href="https://www.ableton.com/fr/live/"> All posts</a>
+                        <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/all-new-features/"> Artists</a>
+                        <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/what-is-live/">News</a>
+                        <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/max-for-live/"> Downloads</a>
+                        <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/learn-live/"> Tutorials</a>
+                        <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/integrated-hardware/"> Videos</a>
+                        <a class="navbar-primary__txt orange-txt" href="https://www.ableton.com/en/live/compare-editions/"> Loop </a>
+                        <a class="navbar-primary__txt blue-txt" href="https://www.ableton.com/en/shop/live/"> One Thing</a>
+                    </div>
+                </div>
+            </nav>
+            <main>
+                <article class="article">
+                    <div class="article__title">
+                        <h2>{{article.category}}</h2>
+                        <h1 class="article__main-title">{{article.title}}</h1>
+                    </div>
 
-            <h2>{{article.category}}</h2>
+                    <div class="article__container">
+                        <div>
+                            <p class="article__description">{{article.description}}</p>
+                        </div>
 
-            <h1>{{article.title}}</h1>
-
-            <p>{{article.description}}</p>
-
-            <img src="{{article.image}}"/>
-
-            <p>{{article.content}}</p>
-
-            <a>{{article.tags}}</a>
-
-        </main>
+                        <a href="{{head.openGraphUrl}}"><img src="{{article.image}}"class="article__img"/></a>
+                        <div>
+                            <p class="article__content">{{article.content}}</p>
+                        </div>
+                        <div>
+                            <a class="article__tags">{{article.tags}}</a>
+                        </div>
+                    </div>
+                </articles>
+                <section class="section2">
+                    {% for teaser in articleHighlight %}
+                        <div class="blog-teaser__cell">
+                            <div class="cell">
+                                <a class="blog-teaser" href="{{teaser.openGraphUrl}}">
+                                    <div class="blog-teaser__img">
+                                        <img src="{{teaser.image}}" width="700" height="500" alt="">
+                                    </div>
+                                    <div class="blog-teaser__txt">
+                                        <h3 class="blog-teaser__category">{{teaser.category}}</h3>
+                                        <h2 class="blog-teaser__headline">{{teaser.title}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </section>
+            </main>
+            {% include "./partial/footer.njk" %}
+        </body>

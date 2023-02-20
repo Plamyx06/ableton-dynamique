@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "generate": "node src/index.js",
+    "generate": "node src/build.js",
     "dev": "http-server -c-1 ./dist"
   },
   "dependencies": {
+    "@sindresorhus/slugify": "^2.2.0",
     "clean-css-promise": "^3.0.0",
     "html-minifier-terser": "^7.1.0",
     "http-server": "^14.1.1",

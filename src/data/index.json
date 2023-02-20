@@ -1,183 +1,220 @@
 {
-  "head": {
-    "titleTab": "Creative tools for music makers | Ableton",
-    "openGraphUrl": "https://ableton-dynamique-axvz-ijt9eeib0-plamyx06.vercel.app/",
-    "openGraphTitle": "Freeze, Delay and Deconstruct – Sound Design with Spectral Time",
-    "openGraphDescription": "In his latest video, Seed to Stage explores the Spectral Time device introduced in Live 11, walking you through its many sonic possibilities to create a myriad of trippy sounds, from metallic, glitched-out stutters to washed-out ambience and head-flipping stereo effects.",
-    "openGraphPicture": "https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?",
-    "CSSglobal": "global.css",
-    "CSS": "index.css"
-  },
-  "navlinks": [
-    {
-      "title": "Push",
-      "href": "https://www.ableton.com/en/push/"
-    },
-    { "title": "Link", "href": "https://www.ableton.com/en/link/" },
-    {
-      "title": "Shop",
-      "href": "https://www.ableton.com/en/shop/"
-    },
-    {
-      "title": "Packs",
-      "href": "https://www.ableton.com/en/packs/"
-    },
-    {
-      "title": "Help",
-      "href": "https://www.ableton.com/en/help/"
-    }
-  ],
-  "navlinkTry": {
-    "title": "Try live for free",
-    "href": "https://www.ableton.com/en/trial/"
-  },
-  "navlinkLogIn": {
-    "title": "Login or register",
-    "href": "/member/login.html"
-  },
-  "navbarButton": {
-    "title": "More",
-    "title2": "+",
-    "href": ""
-  },
-  "navlinkMobile": {
-    "title": "Menu"
-  },
-  "article1": {
-    "href": "https://www.ableton.com/en/blog/freeze-delay-and-deconstruct-sound-design-with-spectral-time",
-    "pictureSrc": "https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?",
-    "title": "Freeze, Delay and Deconstruct – Sound Design with Spectral Time",
-    "subtitle": "Watch the video",
-    "subtitleSymbol": ">",
-    "alt": "spectral-time effect picture"
-  },
-  "panelBlog1Txt": {
-    "content": "The latest from Ableton"
-  },
-  "panelBlog1nav": [
-    {
-      "title": "All posts",
-      "href": "https://www.ableton.com/en/blog/"
-    },
-    {
-      "title": "Artists",
-      "href": "https://www.ableton.com/en/blog/categories/artists/"
-    },
-    {
-      "title": "News",
-      "href": "https://www.ableton.com/en/blog/categories/news/"
-    },
-    {
-      "title": "Downloads",
-      "href": "https://www.ableton.com/en/blog/categories/downloads/"
-    },
-    {
-      "title": "Tutorials",
-      "href": "https://www.ableton.com/en/blog/categories/tutorials/"
-    },
-    {
-      "title": "Videos",
-      "href": "https://www.ableton.com/en/blog/categories/videos/"
-    },
-    {
-      "title": "Loop",
-      "href": "https://www.ableton.com/en/blog/loop/"
-    }
-  ],
-  "panelBlog1navGroup": {
-    "title": "See all post >",
-    "href": "https://www.ableton.com/en/blog/"
-  },
-  "blogTeaserCell": [
-    {
-      "category": "Loop",
-      "headline": "Get Together: The Changing Forms of Musical Collaboration",
-      "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_image_U9FK8pM.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
-      "href": "/en/blog/get-together-the-changing-forms-of-musical-collaboration/",
-      "alt": "gradient orange picture"
-    },
-    {
-      "category": "Loop",
-      "headline": "Loop: Five Perspectives on Working with Environmental Noise",
-      "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_hero_image_800x400.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
-      "href": "https://www.ableton.com/en/blog/loop-five-perspectives-on-working-with-environmental-noise/",
-      "alt": "picture of five people on a purple background"
-    },
-    {
-      "category": "Loop",
-      "headline": "Loop Session: In the Studio with Grand River",
-      "pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/unsorted-uploads/1_blog_loop_session_grand_river_blog.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
-      "href": "https://www.ableton.com/en/blog/catch-up-on-the-first-loop-session-with-grand-river/",
-      "alt": "picture of a man and a woman working on a computer and a synthesizer"
-    }
-  ],
-  "panelBlog2nav": [
-    {
-      "title": "All posts",
-      "href": "https://ableton.com/en/blog/"
-    },
-    {
-      "title": "Artists",
-      "href": "https://www.ableton.com/en/blog/categories/artists/"
-    },
-    {
-      "title": "News",
-      "href": "https://www.ableton.com/en/blog/categories/news/"
-    },
-    {
-      "title": "Downloads",
-      "href": "https://www.ableton.com/en/blog/categories/downloads/"
-    },
-    {
-      "title": "Tutorials",
-      "href": "https://www.ableton.com/en/blog/categories/tutorials/"
-    },
-    {
-      "title": "Videos",
-      "href": "https://www.ableton.com/en/blog/categories/videos/"
-    },
-    {
-      "title": "Loop",
-      "href": "https://www.ableton.com/en/blog/loop/"
-    },
-    {
-      "title": "One Thing",
-      "href": "https://www.ableton.com/en/one-thing/"
-    }
-  ],
-  "mainFooter1": {
-    "title": "Sign up to our newsletter",
-    "helpTxt": "Enter your email address to stay up to date with the latest offers, tutorials, downloads, surveys and more.",
-    "placeholder": "Email Address",
-    "button": "Sign up"
-  },
-  "mainFooter2": [
-    {
-      "title": "Register Live or Push >",
-      "href": "https://www.ableton.com/en/login/?next=/en/account/add_license/"
-    },
-    {
-      "title": "About Ableton >",
-      "href": "https://www.ableton.com/en/about/"
-    },
-    {
-      "title": "Jobs >",
-      "href": "https://www.ableton.com/en/jobs/"
-    }
-  ],
-  "Footer3": { "mainTitle": "Education" },
-  "mainFooter3": [
-    {
-      "title": "Offers for students and teachers >",
-      "href": "https://www.ableton.com/en/shop/education/"
-    },
-    {
-      "title": "Ableton for the classroom >",
-      "href": "https://www.ableton.com/en/classroom/"
-    },
-    {
-      "title": "Ableton for Colleges and Universities >",
-      "href": "https://www.ableton.com/en/colleges-universities/"
-    }
-  ]
+	"head": {
+		"titleTab": "Creative tools for music makers | Ableton",
+		"openGraphUrl": "https://ableton-dynamique-axvz-ijt9eeib0-plamyx06.vercel.app/",
+		"openGraphTitle": "Freeze, Delay and Deconstruct – Sound Design with Spectral Time",
+		"openGraphDescription": "In his latest video, Seed to Stage explores the Spectral Time device introduced in Live 11, walking you through its many sonic possibilities to create a myriad of trippy sounds, from metallic, glitched-out stutters to washed-out ambience and head-flipping stereo effects.",
+		"openGraphPicture": "https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?",
+		"CSSglobal": "global.css",
+		"CSS": "index.css"
+	},
+	"navlinks": [
+		{
+			"title": "Push",
+			"href": "https://www.ableton.com/en/push/"
+		},
+		{
+			"title": "Link",
+			"href": "https://www.ableton.com/en/link/"
+		},
+		{
+			"title": "Shop",
+			"href": "https://www.ableton.com/en/shop/"
+		},
+		{
+			"title": "Packs",
+			"href": "https://www.ableton.com/en/packs/"
+		},
+		{
+			"title": "Help",
+			"href": "https://www.ableton.com/en/help/"
+		}
+	],
+	"navlinkTry": {
+		"title": "Try live for free",
+		"href": "https://www.ableton.com/en/trial/"
+	},
+	"navlinkLogIn": {
+		"title": "Login or register",
+		"href": "/member/login.html"
+	},
+	"navbarButton": {
+		"title": "More",
+		"title2": "+",
+		"href": ""
+	},
+	"navlinkMobile": {
+		"title": "Menu"
+	},
+	"article1": {
+		"href": "https://www.ableton.com/en/blog/freeze-delay-and-deconstruct-sound-design-with-spectral-time",
+		"pictureSrc": "https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?",
+		"title": "Freeze, Delay and Deconstruct – Sound Design with Spectral Time",
+		"subtitle": "Watch the video",
+		"subtitleSymbol": ">",
+		"alt": "spectral-time effect picture"
+	},
+	"panelBlog1Txt": {
+		"content": "The latest from Ableton"
+	},
+	"panelBlog1nav": [
+		{
+			"title": "All posts",
+			"href": "https://www.ableton.com/en/blog/"
+		},
+		{
+			"title": "Artists",
+			"href": "https://www.ableton.com/en/blog/categories/artists/"
+		},
+		{
+			"title": "News",
+			"href": "https://www.ableton.com/en/blog/categories/news/"
+		},
+		{
+			"title": "Downloads",
+			"href": "https://www.ableton.com/en/blog/categories/downloads/"
+		},
+		{
+			"title": "Tutorials",
+			"href": "https://www.ableton.com/en/blog/categories/tutorials/"
+		},
+		{
+			"title": "Videos",
+			"href": "https://www.ableton.com/en/blog/categories/videos/"
+		},
+		{
+			"title": "Loop",
+			"href": "https://www.ableton.com/en/blog/loop/"
+		}
+	],
+	"panelBlog1navGroup": {
+		"title": "See all post >",
+		"href": "https://www.ableton.com/en/blog/"
+	},
+	"blogTeaserCell": [
+		{
+			"category": "Loop",
+			"headline": "Get Together: The Changing Forms of Musical Collaboration",
+			"pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_image_U9FK8pM.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
+			"href": "/en/blog/get-together-the-changing-forms-of-musical-collaboration/",
+			"alt": "gradient orange picture"
+		},
+		{
+			"category": "Loop",
+			"headline": "Loop: Five Perspectives on Working with Environmental Noise",
+			"pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/blog_hero_image_800x400.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
+			"href": "https://www.ableton.com/en/blog/loop-five-perspectives-on-working-with-environmental-noise/",
+			"alt": "picture of five people on a purple background"
+		},
+		{
+			"category": "Loop",
+			"headline": "Loop Session: In the Studio with Grand River",
+			"pictureSrc": "https://cdn-resources.ableton.com/resources/filer_thumbnails/unsorted-uploads/1_blog_loop_session_grand_river_blog.jpg__3333.0x1667.0_q85_subsampling-2.jpg",
+			"href": "https://www.ableton.com/en/blog/catch-up-on-the-first-loop-session-with-grand-river/",
+			"alt": "picture of a man and a woman working on a computer and a synthesizer"
+		}
+	],
+	"panelBlog2nav": [
+		{
+			"title": "All posts",
+			"href": "https://ableton.com/en/blog/"
+		},
+		{
+			"title": "Artists",
+			"href": "https://www.ableton.com/en/blog/categories/artists/"
+		},
+		{
+			"title": "News",
+			"href": "https://www.ableton.com/en/blog/categories/news/"
+		},
+		{
+			"title": "Downloads",
+			"href": "https://www.ableton.com/en/blog/categories/downloads/"
+		},
+		{
+			"title": "Tutorials",
+			"href": "https://www.ableton.com/en/blog/categories/tutorials/"
+		},
+		{
+			"title": "Videos",
+			"href": "https://www.ableton.com/en/blog/categories/videos/"
+		},
+		{
+			"title": "Loop",
+			"href": "https://www.ableton.com/en/blog/loop/"
+		},
+		{
+			"title": "One Thing",
+			"href": "https://www.ableton.com/en/one-thing/"
+		}
+	],
+	"mainFooter1": {
+		"title": "Sign up to our newsletter",
+		"helpTxt": "Enter your email address to stay up to date with the latest offers, tutorials, downloads, surveys and more.",
+		"placeholder": "Email Address",
+		"button": "Sign up"
+	},
+	"mainFooter2": [
+		{
+			"title": "Register Live or Push >",
+			"href": "https://www.ableton.com/en/login/?next=/en/account/add_license/"
+		},
+		{
+			"title": "About Ableton >",
+			"href": "https://www.ableton.com/en/about/"
+		},
+		{
+			"title": "Jobs >",
+			"href": "https://www.ableton.com/en/jobs/"
+		}
+	],
+	"Footer3": {
+		"mainTitle": "Education"
+	},
+	"mainFooter3": [
+		{
+			"title": "Offers for students and teachers >",
+			"href": "https://www.ableton.com/en/shop/education/"
+		},
+		{
+			"title": "Ableton for the classroom >",
+			"href": "https://www.ableton.com/en/classroom/"
+		},
+		{
+			"title": "Ableton for Colleges and Universities >",
+			"href": "https://www.ableton.com/en/colleges-universities/"
+		}
+	],
+	"articleHighlight": [
+		{
+			"id": "19pnw03751",
+			"title": "Friends, not Samples: The Soft Pink Truth on Collaboration and Pleasure",
+			"description": "“If I had to boil it down to a slogan it'd be like, ‘Friends, not samples,’” jokes Drew Daniel of his recent music. Daniel is best known as one half of the duo Matmos, who are famous for doing extraordinary things with unlikely sound sources: a washing machine; the sounds of plastic surgery; the audio archive of a Polish avant-garde composer. In the hands of Daniel and his partner in Matmos (and in life) M.C. Schmidt, samples can do, and mean, all sorts of things. They can comment on our world, draw attention to the unnoticed, or make us laugh. But samples can also give us misleading ideas about creativity.",
+			"category": "Artist",
+			"content": "From there, Daniel established a working method. Collaborators would play along to his works in progress, often just “demos of basic rhythms and chord shapes.” He would drop their recordings into Live and process them using a range of tools, including Live’s Sampler instruments and the convert to harmony function. “The album would not exist, really, without convert to harmony,” he says. “I'm too stupid to listen to somebody playing guitar and go like, what's the chord? But this system lets you produce a kind of trace, and its unreliability gives you this funny little grit of chaos that you can use to grow something cool. I’m trimming this little bonsai tree of MIDI information, and getting it to grow in the right way.” Working with collaborators was far from a linear process. Early on, Daniel created a single 25-minute track from their contributions, which he ended up “cannibalizing and demolishing” to create “a suite of seven or eight new songs.” The players might also spark new ideas. “Often I would have people sing or play along with a demo of one song, and I would take what they gave me and cut it in half. Half I would use for the original song and half I would extract and turn into, like, tissue samples to grow an entirely new song. So it became this branching structure. That's why a lot of the songs use the same chords and are the same tempo.”",
+			"image": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/drew_daniel_by_niclas_weber_ggtN8LA.jpg__2787.0x1393.0_q85_subsampling-2.jpg",
+			"tags": " Disco, Collaboration",
+			"openGraphUrl": "/blog/friends-not-samples-the-soft-pink-truth-on-collaboration-and-pleasure-19pnw03751.html"
+		},
+		{
+			"id": "1zbizek8um",
+			"title": "George FitzGerald: Personal Stamp",
+			"description": "When music makers talk about improvements to their creative flow, they’re usually referring to a new instrument, an untapped sound source or perhaps a fresh approach to processing. They’re rarely referring to the unfinished sketches and dead ends that litter their hard drives. But for George FitzGerald, these eight-bar loops and patch experiments can be the spark that ignites a project and sends it in a new, more interesting direction.",
+			"category": "Artist",
+			"content": "FitzGerald has a considered, intentional sound, which makes it hard to picture him dragging and dropping unused bits and pieces into a track until something clicks. But that’s exactly what he’s done throughout his career – even before it was possible to grab parts from other projects within the browser and test them out.“Sometimes you pull one of these tracks from another project in, drop it a couple of semitones to match the key and it works really well,” says FitzGerald, “But quite often have to work with it a little bit. The main thing is it's not a piece of source material that you have come up with that day, so it's almost like you've taken a half-hour break and somebody else has sat at the chair and tried some stuff out. Then you've come back and you're trying to make that stuff work. I always find that gives you other perspectives. It seems like a really mundane feature of Live, but it's completely central to the way I work on it.”",
+			"image": "https://cdn-resources.ableton.com/resources/filer_thumbnails/misc-downloads/346_georgefitzgerald6.jpg__800.0x400.0_q85_subsampling-2.jpg",
+			"tags": " Sound Design, Warping, Wavetable, EQ Eight, Live 11, Comping",
+			"openGraphUrl": "/blog/george-fitz-gerald-personal-stamp-1zbizek8um.html"
+		},
+		{
+			"id": "043400u1p9",
+			"title": "Tennyson: Storytelling With Production",
+			"description": "Luke Pretty, aka Tennyson, has discovered a foolproof way to harness his productivity. “If people are watching me, I feel forced to work. So I do a lot of live streams. I’ll usually call a session ‘Eight hour live stream’ or something, and then I’m screwed,” he laughs. “Like, I have to just sit down for eight hours and work.”",
+			"category": "Loop",
+			"content": "It might seem surprising that Luke, who’s been releasing music for a decade, still feels he needs to find strategies to get him into writing mode. But the technique pays off. “I don’t really even understand it. When something goes right you can replay the footage, and I have no idea what happened or what went right. But I know it works.”On Rot, Tennyson’s first full-length LP, released in February, the results speak for themselves. The production is immaculate, and despite the eye-watering amount of samples and other sounds that feature on each track, everything fits together seamlessly. No two songs seem to belong to the same genre or convey the same mood, but they all share the same playful energy, accompanied in nearly every instance by Luke’s own warm, soulful vocals.Growing up in Edmonton, Canada, inspiration came to Luke from a variety of sources, some of them less conscious than others. “I grew up listening to a lot of introspective electronic music, like James Blake and Boards of Canada,” he explains. “I’d just spend hours and hours listening, especially younger when I was sixteen and seventeen. I’d play games with my friends till the middle of the night and just have music on the whole time, so I think all these hours of listening finally caught up to me.”",
+			"image": "https://cdn-resources.ableton.com/resources/filer_thumbnails/press/323_tennyson4.jpg__800.0x400.0_q85_subsampling-2.jpg",
+			"tags": "Automation, Sound Design, Arpeggiator, Corpus, Delay, EQ Eight, Live 11",
+			"openGraphUrl": "/blog/tennyson-storytelling-with-production-043400u1p9.html"
+		}
+	]
 }
