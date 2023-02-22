@@ -1,13 +1,13 @@
 {
   "scripts": {
     "generate": "node src/build.js",
-    "dev": "http-server -c-1 ./dist"
+    "dev": "http-server -c-1 ./dist",
+    "serve": "nodemon script/server.js"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.2.0",
     "clean-css-promise": "^3.0.0",
     "html-minifier-terser": "^7.1.0",
-    "http-server": "^14.1.1",
     "nanoid": "^4.0.1",
     "nunjucks": "^3.2.3",
     "terser": "^5.16.3"

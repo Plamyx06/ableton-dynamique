@@ -26,7 +26,7 @@ const optionJsMinified = {
     beautify: false,
   },
 };
-const mapSrcDist = {
+const srcFileToDist = {
   "./src/css/index.css": "./dist/index.css",
   "./src/css/global.css": "./dist/global.css",
   "./src/script/global.js": "./dist/global.js",
@@ -41,7 +41,10 @@ async function main() {
   const templateLogin = nunjucks.render("./src/template/login.njk", dataLogin);
 
   if (isDev) {
-    await copyAllFiles(Object.keys(mapSrcDist), Object.values(mapSrcDist));
+    await copyAllFiles(
+      Object.keys(srcFileToDist),
+      Object.values(srcFileToDist)
+    );
     Promise.all([
       fsp.writeFile("./dist/index.html", templateIndex),
       console.log("index.html file created"),
@@ -53,7 +56,7 @@ async function main() {
     Promise.all([
       minifyHTML(templateIndex, "./dist/index.html"),
       minifyHTML(templateLogin, "./dist/member/login.html"),
-      minifiedCSSorJS(Object.keys(mapSrcDist), Object.values(mapSrcDist)),
+      minifiedCSSorJS(Object.keys(srcFileToDist), Object.values(srcFileToDist)),
     ]);
   }
 }
