@@ -8,8 +8,6 @@
   src: url("https://cdn-resources.ableton.com/80bA26cPQ1hEJDFjpUKntxfqdmG3ZykO/static/fonts/futura-pt-book.2dadbb3c03c1.woff2") format("woff2");
 }
 
-
-
 .navbar--open {
   position: absolute;
   top: 70px;
@@ -130,12 +128,12 @@ ul.main-nav__row {
 
   .navbar__list1 {
     display: block;
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .navbar__list2 {
     display: block;
-    font-size: 24px;
+    font-size: 22px;
     padding-right: 30px;
   }
 
@@ -143,7 +141,6 @@ ul.main-nav__row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 50px;
     padding-top: 5px;
   }
 
@@ -224,7 +221,7 @@ ul.main-nav__row {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding-bottom: 30px;
+
   }
 
   .main-footer__contain1 {
