@@ -97,8 +97,8 @@ body {
 
 @media (min-width: 1536px) {
   .article1__txt {
-    padding-right: 700px;
-    padding-left: 700px;
+    padding-right: 500px;
+    padding-left: 500px;
   }
 }
 

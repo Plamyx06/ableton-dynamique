@@ -53,6 +53,7 @@ body {
     margin-right: auto;
 }
 
+
 @media (min-width: 1024px) {
     .article__container {
         font-size: 20px;
@@ -61,7 +62,7 @@ body {
 
 @media (min-width: 1280px) {
     .article__container {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .article__title h2 {
