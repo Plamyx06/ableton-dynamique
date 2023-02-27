@@ -1,3 +1,18 @@
+@font-face {
+    font-family: "futura-pt-medium";
+    src: url("https://cdn-resources.ableton.com/80bA26cPQ1hEJDFjpUKntxfqdmG3ZykO/static/fonts/futura-pt-medium.b650e9c2aaf6.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "futura-pt-book";
+    src: url("https://cdn-resources.ableton.com/80bA26cPQ1hEJDFjpUKntxfqdmG3ZykO/static/fonts/futura-pt-book.2dadbb3c03c1.woff2") format("woff2");
+}
+
+body {
+    font-family: 'futura-pt-medium';
+    font-size: 20px;
+}
+
 .navbar__separator {
     border-top: 2px solid #eee;
     margin: 0px 0px 0px 0px;

@@ -1,5 +1,5 @@
 import nunjucks from "nunjucks";
-import fsp from "fs/promises";
+import fs from "fs/promises";
 import { minify } from "html-minifier-terser";
 import cleanCSS from "clean-css-promise";
 import { minify as minifyJS } from "terser";
@@ -7,246 +7,213 @@ import path from "path";
 import slugify from "@sindresorhus/slugify";
 nunjucks.configure({ autoescape: true });
 
-const dataIndex = await readJsonFile("./src/data/index.json");
-const dataLogin = await readJsonFile("./src/data/login.json");
-
 const args = process.argv.slice(2);
 const isDev = args[0] === "dev";
 
-const optionJsMinified = {
-  compress: {
-    drop_console: true,
-    unsafe: true,
+const srcFileToDest = [
+  {
+    src: "./src/css/index.css",
+    dist: "./dist/index.css",
   },
-  mangle: {
-    reserved: ["jQuery"],
+  {
+    src: "./src/css/global.css",
+    dist: "./dist/global.css",
   },
-  output: {
-    comments: "some",
-    beautify: false,
+  {
+    src: "./src/script/global.js",
+    dist: "./dist/global.js",
   },
-};
-const srcFileToDist = {
-  "./src/css/index.css": "./dist/index.css",
-  "./src/css/global.css": "./dist/global.css",
-  "./src/script/global.js": "./dist/global.js",
-  "./src/css/login.css": "./dist/member/login.css",
-  "./src/css/article.css": "./dist/blog/article.css",
-};
+  {
+    src: "./src/css/login.css",
+    dist: "./dist/login.css",
+  },
+  {
+    src: "./src/css/article.css",
+    dist: "./dist/blog/article.css",
+  },
+];
+
 async function main() {
-  await fsp.rm("./dist", { recursive: true, force: true });
-  await fsp.mkdir("./dist");
+  await fs.rm("./dist", { recursive: true, force: true });
+  await fs.mkdir("./dist");
 
-  const templateIndex = nunjucks.render("./src/template/index.njk", dataIndex);
-  const templateLogin = nunjucks.render("./src/template/login.njk", dataLogin);
-
-  if (isDev) {
-    await copyAllFiles(
-      Object.keys(srcFileToDist),
-      Object.values(srcFileToDist)
-    );
-    Promise.all([
-      fsp.writeFile("./dist/index.html", templateIndex),
-      console.log("index.html file created"),
-      fsp.writeFile("./dist/member/login.html", templateLogin),
-      console.log(`login.html file created`),
-      generateArticlePage("./src/template/blog.njk", "./dist/blog"),
-    ]);
-  } else {
-    Promise.all([
-      minifyHTML(templateIndex, "./dist/index.html"),
-      minifyHTML(templateLogin, "./dist/member/login.html"),
-      minifiedCSSorJS(Object.keys(srcFileToDist), Object.values(srcFileToDist)),
-    ]);
-  }
+  await Promise.all([
+  minifyCSSorJS(srcFileToDest),
+  copyAllFilesIfIsDev(srcFileToDest),
+   njkToHtmlDevOrMinify(
+    "./src/template/index.njk",
+    "./dist/index.html",
+    "./src/data/index.json",
+    "./src/data/global.json","./script/articles.json"
+  ),
+  njkToHtmlDevOrMinify(
+    "./src/template/login.njk",
+    "./dist/login.html",
+    "./src/data/login.json",
+    "./src/data/global.json",
+  ),
+   generateArticlePage("./src/template/blog.njk", "./dist/blog")])
 }
 main();
-
-async function minifyHTML(template, dist) {
-  if (!(await pathExists(path.dirname(dist)))) {
-    await fsp.mkdir(path.dirname(dist), { recursive: true });
-  }
-  console.log(path.dirname(dist));
-  const minifiedHtmlOption = {
-    removeAttributeQuotes: true,
-    collapseWhitespace: true,
-    removeComments: true,
-  };
-  const minified = await minify(template, minifiedHtmlOption);
-  await fsp.writeFile(dist, minified);
-  console.log(`The file ${path.basename(dist)} has been minified and created.`);
-}
-async function minifiedCSSorJS(srcArray, distArray) {
-  for (let i = 0; i < srcArray.length; i++) {
-    if (!(await pathExists(path.dirname(distArray[i])))) {
-      await fsp.mkdir(path.dirname(distArray[i]));
+async function copyAllFilesIfIsDev(arrOfSrcAndDest) {
+  if (isDev) {
+    for (const { src, dist } of arrOfSrcAndDest) {
+      if (!(await pathExists(path.dirname(dist)))) {
+        await fs.mkdir(path.dirname(dist), { recursive: true });
+      }
+      await fs.copyFile(src, dist);
+      console.log(
+        `The file ${path.basename(src)} has been successfully copied!`
+      );
     }
-    const fileExtension = path.extname(srcArray[i]);
-    if (fileExtension === ".css") {
-      await fsp
-        .readFile(srcArray[i], "utf8")
-        .then((dataCSS) => new cleanCSS().minify(dataCSS))
-        .then((minifiedCSS) => fsp.writeFile(distArray[i], minifiedCSS.styles))
-        .then(() =>
-          console.log(
-            `The ${path.basename(
-              srcArray[i]
-            )} file has been minified and copied!`
-          )
+  } else {
+    return;
+  }
+}
+
+async function minifyCSSorJS(arrOfSrcAndDest) {
+  if (!isDev) {
+    for (const { src, dist } of arrOfSrcAndDest) {
+      if (!(await pathExists(path.dirname(dist)))) {
+        await fs.mkdir(path.dirname(dist), { recursive: true });
+      }
+      const fileExtension = path.extname(src);
+      if (fileExtension === ".css") {
+        const dataCSS = await fs.readFile(src, "utf8");
+        const minifiedCSS = await new cleanCSS().minify(dataCSS);
+        await fs.writeFile(dist, minifiedCSS.styles);
+
+        console.log(
+          `The ${path.basename(src)} file has been minified and copied!`
         );
-    } else if (fileExtension === ".js") {
-      await fsp
-        .readFile(srcArray[i], "utf8")
-        .then((dataJS) => minifyJS(dataJS, optionJsMinified))
-        .then((JSMinified) => fsp.writeFile(distArray[i], JSMinified.code))
-        .then(() =>
-          console.log(
-            `The ${path.basename(
-              srcArray[i]
-            )} file has been minified and copied!`
-          )
+      } else if (fileExtension === ".js") {
+        const dataJS = await fs.readFile(src, "utf8");
+        const minifiedJS = await minifyJS(dataJS, {
+          compress: {
+            drop_console: true,
+            unsafe: true,
+          },
+          mangle: {
+            reserved: ["jQuery"],
+          },
+          output: {
+            comments: "some",
+            beautify: false,
+          },
+        });
+        await fs.writeFile(dist, minifiedJS.code);
+        console.log(
+          `The ${path.basename(src)} file has been minified and copied!`
         );
-    } else {
-      throw new err(`${fileExtension} not supported`);
+      } else {
+        throw new err(`${fileExtension} not supported`);
+      }
     }
+  } else {
+    return;
   }
 }
-async function copyAllFiles(srcArray, distArray) {
-  for (let i = 0; i < srcArray.length; i++) {
-    if (!(await pathExists(path.dirname(distArray[i])))) {
-      await fsp.mkdir(path.dirname(distArray[i]), { recursive: true });
-    }
-    await fsp.copyFile(srcArray[i], distArray[i]);
-    console.log(
-      `The file ${path.basename(srcArray[i])} has been successfully copied!`
-    );
-  }
-}
-async function readJsonFile(path) {
-  const dataJson = await fsp.readFile(path, "utf8");
-  const data = JSON.parse(dataJson);
-  return data;
-}
-async function generateArticlePage(templatePath, destFolder) {
-  if (!(await pathExists(path.dirname(destFolder)))) {
-    await fsp.mkdir(path.dirname(destFolder), { recursive: true });
-  }
-  const articlesData = await readJsonFile("./src/data/articles.json");
-  const articles = articlesData.articles;
-  const indexData = await readJsonFile("./src/data/index.json");
 
-  const articleHighlight = articles.slice(0, 3);
-  for (let article of articleHighlight) {
-    article.openGraphUrl = `/blog/${slugify(article.title)}-${article.id}.html`;
+async function generateArticlePage(templatePath, destPath) {
+ 
+  if (!(await pathExists(destPath))) {
+    await fs.mkdir(destPath, { recursive: true });
   }
-  indexData.articleHighlight = articleHighlight;
+  const [articlesData, dataGlobal] = await Promise.all([
+    readJsonFile("./script/articles.json"),
+    readJsonFile("./src/data/global.json"),
+  ]);
+  const articlesHighlight = articlesData.slice(0, 3);
 
-  await fsp.writeFile(
-    "./src/data/index.json",
-    JSON.stringify(indexData, null, "\t")
-  );
-
-  for (const article of articles) {
+  for (const article of articlesData) {
+    const dest = `${destPath}/${slugify(article.title)}-${article.id}.html`;
     const data = {
       head: {
         titleTab: article.title,
-        openGraphUrl: `/blog/${slugify(article.title)}-${article.id}.html`,
+        openGraphUrl: dest,
         openGraphTitle: article.title,
         openGraphDescription: article.description,
         openGraphPicture: article.image,
         CSSglobal: "/global.css",
         CSS: "article.css",
       },
-      navlinks: [
-        {
-          title: "Push",
-          href: "https://www.ableton.com/en/push/",
-        },
-        { title: "Link", href: "https://www.ableton.com/en/link/" },
-        {
-          title: "Shop",
-          href: "https://www.ableton.com/en/shop/",
-        },
-        {
-          title: "Packs",
-          href: "https://www.ableton.com/en/packs/",
-        },
-        {
-          title: "Help",
-          href: "https://www.ableton.com/en/help/",
-        },
-      ],
-      navlinkTry: {
-        title: "Try live for free",
-        href: "https://www.ableton.com/en/trial/",
-      },
-      navlinkLogIn: {
-        title: "Login or register",
-        href: "/member/login.html",
-      },
-      navbarButton: {
-        title: "More",
-        title2: "+",
-        href: "",
-      },
-      navlinkMobile: {
-        title: "Menu",
-      },
-      mainFooter1: {
-        title: "Sign up to our newsletter",
-        helpTxt:
-          "Enter your email address to stay up to date with the latest offers, tutorials, downloads, surveys and more.",
-        placeholder: "Email Address",
-        button: "Sign up",
-      },
-      mainFooter2: [
-        {
-          title: "Register Live or Push >",
-          href: "https://www.ableton.com/en/login/?next=/en/account/add_license/",
-        },
-        {
-          title: "About Ableton >",
-          href: "https://www.ableton.com/en/about/",
-        },
-        {
-          title: "Jobs >",
-          href: "https://www.ableton.com/en/jobs/",
-        },
-      ],
-      Footer3: {
-        mainTitle: "Education",
-      },
-      mainFooter3: [
-        {
-          title: "Offers for students and teachers >",
-          href: "https://www.ableton.com/en/shop/education/",
-        },
-        {
-          title: "Ableton for the classroom >",
-          href: "https://www.ableton.com/en/classroom/",
-        },
-        {
-          title: "Ableton for Colleges and Universities >",
-          href: "https://www.ableton.com/en/colleges-universities/",
-        },
-      ],
-      articleHighlight,
+      articlesHighlight,
       article,
+      ...dataGlobal,
     };
-
-    const html = nunjucks.render(templatePath, data);
-    await fsp.writeFile(
-      `${destFolder}/${slugify(article.title)}-${article.id}.html`,
-      html
+    const htmlPage = nunjucks.render(templatePath, data);
+    if (isDev) {
+      await fs.writeFile(dest, htmlPage);
+    } else {
+      const minified = await minify(htmlPage, {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      });
+      await fs.writeFile(dest, minified);
+    }
+  }
+  if (isDev) {
+    console.info(`you have created ${articlesData.length} articles page html`);
+  } else {
+    console.info(
+      `you have created ${articlesData.length} articles page html minified`
     );
   }
-  console.info(`you have created ${articles.length} articles`);
 }
+
 async function pathExists(path) {
   try {
-    await fsp.access(path);
+    await fs.access(path);
     return true;
   } catch (err) {
     return false;
+  }
+}
+async function readJsonFile(path) {
+  const dataJson = await fs.readFile(path, "utf8");
+  const data = JSON.parse(dataJson);
+  return data;
+}
+
+async function njkToHtmlDevOrMinify(
+  templatePath,
+  dest,
+  PathJson,
+  PathGlobaljson,
+  pathArticlesJson
+) {
+  const data = await readJsonFile(PathJson);
+  const dataGlobal = await readJsonFile(PathGlobaljson);
+
+  if (path.basename(dest) === "index.html") {
+  const dataArticles = await readJsonFile(pathArticlesJson);
+  const articlesHighlight = [];
+  for (const article of dataArticles.slice(0, 3)) {
+    const openGraphUrl = `/blog/${slugify(article.title)}-${article.id}.html`;
+    const articleWithHighlight = { ...article, openGraphUrl };
+    articlesHighlight.push(articleWithHighlight);
+  }
+
+ data.articlesHighlight = articlesHighlight;
+} 
+  const mergedData = { ...dataGlobal, ...data };
+  const htmlPage = nunjucks.render(templatePath, mergedData);
+  if (!(await pathExists(path.dirname(dest)))) {
+    await fs.mkdir(path.dirname(dest), { recursive: true });
+  }
+  if (isDev) {
+    await fs.writeFile(dest, htmlPage);
+    console.log(`${path.basename(dest)} is created!`);
+  } else {
+    const minified = await minify(htmlPage, {
+      removeAttributeQuotes: true,
+      collapseWhitespace: true,
+      removeComments: true,
+    });
+    await fs.writeFile(dest, minified);
+    console.log(
+      `The file ${path.basename(dest)} has been minified and created.`
+    );
   }
 }

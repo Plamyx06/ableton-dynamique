@@ -5,13 +5,10 @@
 
 @font-face {
   font-family: "futura-pt";
-  src: url("https://cdn-resources.ableton.com/80bA26cPQ1hEJDFjpUKntxfqdmG3ZykO/static/fonts/futura-pt-medium.b650e9c2aaf6.woff2") format("woff2");
+  src: url("https://cdn-resources.ableton.com/80bA26cPQ1hEJDFjpUKntxfqdmG3ZykO/static/fonts/futura-pt-book.2dadbb3c03c1.woff2") format("woff2");
 }
 
-body {
-  font-family: futura-pt;
-  font-size: 16px;
-}
+
 
 .navbar--open {
   position: absolute;
@@ -126,23 +123,28 @@ ul.main-nav__row {
 }
 
 @media (min-width: 1024px) {
+
   .navbar__first {
     display: none;
   }
 
   .navbar__list1 {
     display: block;
-
+    font-size: 24px;
   }
 
   .navbar__list2 {
     display: block;
+    font-size: 24px;
+    padding-right: 30px;
   }
 
   .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 50px;
+    padding-top: 5px;
   }
 
   .navbar__left {
@@ -161,7 +163,7 @@ ul.main-nav__row {
   }
 
   .navbar__link {
-    padding: 0px 10px;
+    padding: 0px 20px;
   }
 }
 
@@ -221,40 +223,41 @@ ul.main-nav__row {
   .main-footer__cell {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    padding-bottom: 30px;
   }
 
   .main-footer__contain1 {
     order: 1;
-    width: 40%;
+    width: 45%;
   }
 
   .main-footer__contain2 {
-    width: 25%;
+    width: 50%;
     padding: 20px 0px 0px 0px;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-left: 0vw;
+    padding-right: 0vw;
   }
 
   .main-footer__contain3 {
-    width: 25%;
-    padding-left: 2vw;
-    padding-right: 2vw;
-    padding: 10px 0px 0px 0px;
+    width: 50%;
+    padding-left: 0vw;
+    padding-right: 0vw;
+    padding: 20px 0px 0px 0px;
   }
 
   .main-footer {
-    padding-left: 4vw;
-    padding-right: 4vw;
+    padding-left: 3vw;
+    padding-right: 0vw;
   }
 
   .main-footer__img {
-    padding-left: 20px;
+    padding-left: 0;
   }
 }
 
 @media (min-width: 1280px) {
   .main-footer {
-    font-size: 20px;
+    font-size: 24px;
   }
 }

@@ -4,19 +4,19 @@
         <div class="main-footer__contain1">
             <div class="main-footer__listlink2">
                 <h3>
-                    <strong>{{mainFooter1.title}}</strong>
+                    <strong>{{footer.mainFooter1.title}}</strong>
                 </h3>
                 <div class="main-footer__txt3">{{mainFooter1.helpTxt}}</div>
             </div>
             <div class="main-footer__email">
-                <input name="email" type="email" placeholder="{{mainFooter1.placeholder}}"/>
-                <button class="main-footer__email__button">{{mainFooter1.button}}</button>
+                <input name="email" type="email" placeholder="{{footer.mainFooter1.placeholder}}"/>
+                <button class="main-footer__email__button">{{footer.mainFooter1.button}}</button>
             </div>
         </div>
         <div class="main-footer__contain2">
             <div class="main-footer__linklist1">
                 <ul class="main-footer__linklist1__txt">
-                    {% for linkList in mainFooter2 %}
+                    {% for linkList in footer.mainFooter2 %}
                         <li>
                             <a href="{{linkList.href}}">{{linkList.title}}</a>
                         </li>
@@ -40,9 +40,9 @@
         </div>
         <div class="main-footer__contain3">
             <div class="main-footer__listlink2">
-                <h3>{{Footer3.mainTitle}}</h3>
+                <h3>{{footer.footer3.mainTitle}}</h3>
                 <ul>
-                    {% for listLink in mainFooter3 %}
+                    {% for listLink in footer.mainFooter3 %}
                         <li>
                             <a href="{{listLink.href}}">{{listLink.title}}</a>
                         </li>

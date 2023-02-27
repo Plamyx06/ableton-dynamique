@@ -8,7 +8,7 @@
     <main>
       <div class="article1">
         <a href="{{article1.href}}">
-          <img src="{{article1.pictureSrc}}" width="800" height="400" alt="{{article1.alt}}"/></a>
+          <img src="{{article1.pictureSrc}}" width="1000" height="600" alt="{{article1.alt}}"/></a>
         <div class="article1__txt">
           <a href="{{article1.href}}">
             <h1>
@@ -36,7 +36,7 @@
         </div>
       </section>
       <section class="section2">
-        {% for teaser in articleHighlight %}
+        {% for teaser in articlesHighlight %}
           <div class="blog-teaser__cell">
             <div class="cell">
               <a class="blog-teaser" href="{{teaser.openGraphUrl}}">

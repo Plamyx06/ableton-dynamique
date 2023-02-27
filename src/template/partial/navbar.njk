@@ -10,15 +10,15 @@
         </div>
         <div class="navbar__list1">
             <ul>
-                {% for navlink in navlinks %}
+                {% for navlink in navbar.navlinks %}
                     <li>
                         <a class="navbar__link" href="{{navlink.href}}">{{navlink.title}}</a>
                     </li>
                 {% endfor %}
                 <li>
                     <button class="navbar__link__button">
-                        {{navbarButton.title}}
-                        <span class="navbar__link__txt">{{navbarButton.title2}}</span>
+                        {{navbar.navbarButton.title}}
+                        <span class="navbar__link__txt">{{navbar.navbarButton.title2}}</span>
                     </button>
                 </li>
             </ul>
@@ -27,18 +27,18 @@
     <div class="navbar__list2">
         <ul>
             <li>
-                <a class="navbar__link2__try" href="{{navlinkTry.href}}">{{navlinkTry.title}}</a>
+                <a class="navbar__link2__try" href="{{navbar.navlinkTry.href}}">{{navbar.navlinkTry.title}}</a>
             </li>
             <li>
-                <a class="navbar__link2" href="{{navlinkLogIn.href}}">
-                    {{navlinkLogIn.title}}
+                <a class="navbar__link2" href="{{navbar.navlinkLogIn.href}}">
+                    {{navbar.navlinkLogIn.title}}
                 </a>
             </li>
         </ul>
     </div>
     <div class="navbar__first" id="navbar__first--js">
         <button class="navbar__menu" id="menuButton">
-            <div class="navbar__menu__button">{{navlinkMobile.title}}</div>
+            <div class="navbar__menu__button">{{navbar.navlinkMobile.title}}</div>
             <div class="navbar__menu__svg">
                 <svg class="navbar__menu__js" id="arrowMenu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>

@@ -8,44 +8,6 @@
 		"CSSglobal": "global.css",
 		"CSS": "index.css"
 	},
-	"navlinks": [
-		{
-			"title": "Push",
-			"href": "https://www.ableton.com/en/push/"
-		},
-		{
-			"title": "Link",
-			"href": "https://www.ableton.com/en/link/"
-		},
-		{
-			"title": "Shop",
-			"href": "https://www.ableton.com/en/shop/"
-		},
-		{
-			"title": "Packs",
-			"href": "https://www.ableton.com/en/packs/"
-		},
-		{
-			"title": "Help",
-			"href": "https://www.ableton.com/en/help/"
-		}
-	],
-	"navlinkTry": {
-		"title": "Try live for free",
-		"href": "https://www.ableton.com/en/trial/"
-	},
-	"navlinkLogIn": {
-		"title": "Login or register",
-		"href": "/member/login.html"
-	},
-	"navbarButton": {
-		"title": "More",
-		"title2": "+",
-		"href": ""
-	},
-	"navlinkMobile": {
-		"title": "Menu"
-	},
 	"article1": {
 		"href": "https://www.ableton.com/en/blog/freeze-delay-and-deconstruct-sound-design-with-spectral-time",
 		"pictureSrc": "https://ableton-production.imgix.net/uploads/homepage-teasers/339_Spectral_time_HP2.jpg?",
@@ -146,43 +108,6 @@
 		{
 			"title": "One Thing",
 			"href": "https://www.ableton.com/en/one-thing/"
-		}
-	],
-	"mainFooter1": {
-		"title": "Sign up to our newsletter",
-		"helpTxt": "Enter your email address to stay up to date with the latest offers, tutorials, downloads, surveys and more.",
-		"placeholder": "Email Address",
-		"button": "Sign up"
-	},
-	"mainFooter2": [
-		{
-			"title": "Register Live or Push >",
-			"href": "https://www.ableton.com/en/login/?next=/en/account/add_license/"
-		},
-		{
-			"title": "About Ableton >",
-			"href": "https://www.ableton.com/en/about/"
-		},
-		{
-			"title": "Jobs >",
-			"href": "https://www.ableton.com/en/jobs/"
-		}
-	],
-	"Footer3": {
-		"mainTitle": "Education"
-	},
-	"mainFooter3": [
-		{
-			"title": "Offers for students and teachers >",
-			"href": "https://www.ableton.com/en/shop/education/"
-		},
-		{
-			"title": "Ableton for the classroom >",
-			"href": "https://www.ableton.com/en/classroom/"
-		},
-		{
-			"title": "Ableton for Colleges and Universities >",
-			"href": "https://www.ableton.com/en/colleges-universities/"
 		}
 	],
 	"articleHighlight": [
