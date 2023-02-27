@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "generate": "node src/build.js",
+    "generate": "node script/build.js",
     "dev": "http-server -c-1 ./dist",
     "serve": "nodemon script/server.js"
   },

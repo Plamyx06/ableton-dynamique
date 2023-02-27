@@ -8,17 +8,18 @@ const server = http.createServer(async (request, response) => {
   if (request.method === "GET") {
     let filePath = "./dist" + request.url;
 
-    if (filePath.endsWith(".css")) {
+    // Convert the URL to a Clean URL if it matches the traditional pattern
+    if (filePath.endsWith(".html")) {
+      filePath = filePath.replace(/\.html$/, "");
+    } else if (filePath.endsWith(".css")) {
       contentType = "text/css";
     } else if (filePath.endsWith(".js")) {
       contentType = "application/javascript";
-    } else if (!filePath.includes(".html")) {
-      filePath = `${filePath}.html`;
-    }
-    if (request.url === "/") {
-      filePath = "./dist/index.html";
+    } else {
+      filePath = filePath + ".html";
     }
 
+    // Serve the file if it exists, otherwise return a 404 error
     if ((await pathExists(filePath)) && (await isFile(filePath))) {
       const content = await fs.readFile(filePath, "utf-8");
       response.setHeader("Content-type", contentType);
@@ -29,6 +30,7 @@ const server = http.createServer(async (request, response) => {
     }
   }
 });
+
 
 server.listen(3000, () => {
   console.log("http://localhost:3000");
