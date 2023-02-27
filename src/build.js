@@ -5,6 +5,7 @@ import cleanCSS from "clean-css-promise";
 import { minify as minifyJS } from "terser";
 import path from "path";
 import slugify from "@sindresorhus/slugify";
+import { cp } from "fs";
 nunjucks.configure({ autoescape: true });
 
 const args = process.argv.slice(2);
@@ -125,6 +126,15 @@ async function generateArticlePage(templatePath, destPath) {
   ]);
   const articlesHighlight = articlesData.slice(0, 3);
 
+const articlesHighlightWithUrls = articlesHighlight.map(article => {
+  const openGraphUrl = `/blog/${slugify(article.title)}-${article.id}.html`;
+  return {
+    ...article,
+    openGraphUrl
+  };
+});
+
+
   for (const article of articlesData) {
     const dest = `${destPath}/${slugify(article.title)}-${article.id}.html`;
     const data = {
@@ -137,7 +147,7 @@ async function generateArticlePage(templatePath, destPath) {
         CSSglobal: "/global.css",
         CSS: "article.css",
       },
-      articlesHighlight,
+      articlesHighlightWithUrls,
       article,
       ...dataGlobal,
     };
@@ -175,7 +185,6 @@ async function readJsonFile(path) {
   const data = JSON.parse(dataJson);
   return data;
 }
-
 async function njkToHtmlDevOrMinify(
   templatePath,
   dest,
