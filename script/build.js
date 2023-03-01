@@ -11,7 +11,7 @@ nunjucks.configure({ autoescape: true });
 const args = process.argv.slice(2);
 const isDev = args[0] === "dev";
 
-const srcFileToDest = [
+const srcFileCSSToDest = [
   {
     src: "./src/css/index.css",
     dist: "./dist/index.css",
@@ -19,10 +19,6 @@ const srcFileToDest = [
   {
     src: "./src/css/global.css",
     dist: "./dist/global.css",
-  },
-  {
-    src: "./src/script/global.js",
-    dist: "./dist/global.js",
   },
   {
     src: "./src/css/login.css",
@@ -33,102 +29,55 @@ const srcFileToDest = [
     dist: "./dist/blog/article.css",
   },
 ];
+const srcFileJSToDest = [
+  {
+    src: "./src/script/global.js",
+    dist: "./dist/global.js",
+  },
+];
+const srcJson = {
+  index: "./src/data/index.json",
+  login: "./src/data/login.json",
+  global: "./src/data/global.json",
+  article: "./src/data/articles.json",
+};
+const srcTemplate = {
+  index: "./src/template/index.njk",
+  login: "./src/template/login.njk",
+  blog: "./src/template/blog.njk",
+};
 
 async function main() {
   await fs.rm("./dist", { recursive: true, force: true });
   await fs.mkdir("./dist");
 
   await Promise.all([
-  minifyCSSorJS(srcFileToDest),
-  njkToHtmlDevOrMinifyWithHighlightData(
-    "./src/template/index.njk",
-    "./dist/index.html",
-    "./src/data/index.json",
-    "./src/data/global.json","./script/articles.json"
-  ),
-  njkToHtmlDevOrMinify(
-    "./src/template/login.njk",
-    "./dist/login.html",
-    "./src/data/login.json",
-    "./src/data/global.json",
-  ),
-  generateArticlePage("./src/template/blog.njk", "./dist/blog")])
-  await copyAllFilesIfIsDev(srcFileToDest)
+    handleCSS(srcFileCSSToDest),
+    njkToHtml(srcTemplate.index, "./dist/index.html", srcJson),
+    njkToHtml(srcTemplate.login, "./dist/login.html", srcJson),
+    handleJS(srcFileJSToDest),
+    handleArticlePages(srcTemplate.blog, "./dist/blog"),
+  ]);
 }
 main();
 
-async function copyAllFilesIfIsDev(arrOfSrcAndDest) {
-  if (isDev) {
-    for (const { src, dist } of arrOfSrcAndDest) {
-      if (!(await pathExists(path.dirname(dist)))) {
-        await fs.mkdir(path.dirname(dist), { recursive: true });
-      }
-      await fs.copyFile(src, dist);
-      console.info(
-        `The file ${path.basename(src)} has been successfully copied!`
-      );
-    }
-  } 
-}
-async function minifyCSSorJS(arrOfSrcAndDest) {
-  if (!isDev) {
-    for (const { src, dist } of arrOfSrcAndDest) {
-      if (!(await pathExists(path.dirname(dist)))) {
-        await fs.mkdir(path.dirname(dist), { recursive: true });
-      }
-      const fileExtension = path.extname(src);
-      if (fileExtension === ".css") {
-        const dataCSS = await fs.readFile(src, "utf8");
-        const minifiedCSS = await new cleanCSS().minify(dataCSS);
-        await fs.writeFile(dist, minifiedCSS.styles);
-
-        console.info(
-          `The ${path.basename(src)} file has been minified and copied!`
-        );
-      } else if (fileExtension === ".js") {
-        const dataJS = await fs.readFile(src, "utf8");
-        const minifiedJS = await minifyJS(dataJS, {
-          compress: {
-            drop_console: true,
-            unsafe: true,
-          },
-          mangle: {
-            reserved: ["jQuery"],
-          },
-          output: {
-            comments: "some",
-            beautify: false,
-          },
-        });
-        await fs.writeFile(dist, minifiedJS.code);
-        console.log(
-          `The ${path.basename(src)} file has been minified and copied!`
-        );
-      } else {
-        throw new err(`${fileExtension} not supported`);
-      }
-    }
-  } 
-}
-async function generateArticlePage(templatePath, destPath) {
- 
+async function handleArticlePages(templatePath, destPath) {
   if (!(await pathExists(destPath))) {
     await fs.mkdir(destPath, { recursive: true });
   }
   const [articlesData, dataGlobal] = await Promise.all([
-    readJsonFile("./script/articles.json"),
+    readJsonFile("./src/data/articles.json"),
     readJsonFile("./src/data/global.json"),
   ]);
   const articlesHighlight = articlesData.slice(0, 3);
 
-const articlesHighlightWithUrls = articlesHighlight.map(article => {
-  const openGraphUrl = `/blog/${slugify(article.title)}-${article.id}.html`;
-  return {
-    ...article,
-    openGraphUrl
-  };
-});
-
+  const articlesHighlightWithUrls = articlesHighlight.map((article) => {
+    const openGraphUrl = `/blog/${slugify(article.title)}-${article.id}.html`;
+    return {
+      ...article,
+      openGraphUrl,
+    };
+  });
 
   for (const article of articlesData) {
     const dest = `${destPath}/${slugify(article.title)}-${article.id}.html`;
@@ -179,22 +128,82 @@ async function readJsonFile(path) {
   const data = JSON.parse(dataJson);
   return data;
 }
-async function njkToHtmlDevOrMinify(
-  templatePath,
-  dest,
-  PathJson,
-  PathGlobaljson,
-) {
-  const data = await readJsonFile(PathJson);
-  const dataGlobal = await readJsonFile(PathGlobaljson);
+async function handleJS(arrOfSrcAndDest) {
+  for (const { src, dist } of arrOfSrcAndDest) {
+    if (!(await pathExists(path.dirname(dist)))) {
+      await fs.mkdir(path.dirname(dist), { recursive: true });
+    }
+    const dataJS = await fs.readFile(src, "utf8");
+    const minifiedJS = await minifyJS(dataJS, {
+      compress: {
+        drop_console: true,
+        unsafe: true,
+      },
+      mangle: {
+        reserved: ["jQuery"],
+      },
+      output: {
+        comments: "some",
+        beautify: false,
+      },
+    });
+    if (!isDev) {
+      await fs.writeFile(dist, minifiedJS.code);
+      console.info(
+        `The ${path.basename(src)} file has been minified and copied!`
+      );
+    } else {
+      await fs.copyFile(src, dist);
+      console.info(`The ${path.basename(src)} file has been copied!`);
+    }
+  }
+}
+async function handleCSS(arrOfSrcAndDest) {
+  for (const { src, dist } of arrOfSrcAndDest) {
+    if (!(await pathExists(path.dirname(dist)))) {
+      await fs.mkdir(path.dirname(dist), { recursive: true });
+    }
+    if (!isDev) {
+      const dataCSS = await fs.readFile(src, "utf8");
+      const minifiedCSS = await new cleanCSS().minify(dataCSS);
+      await fs.writeFile(dist, minifiedCSS.styles);
+
+      console.info(
+        `The ${path.basename(src)} file has been minified and copied!`
+      );
+    } else {
+      await fs.copyFile(src, dist);
+      console.info(`The ${path.basename(src)} file has been copied!`);
+    }
+  }
+}
+async function njkToHtml(templatePath, dest, dataJson) {
+  const filename = path.basename(dest, ".html");
+
+  const data = await readJsonFile(dataJson[filename]);
+  const dataGlobal = await readJsonFile(dataJson.global);
+
+  if (path.basename(dest) === "index.html") {
+    const dataArticles = await readJsonFile(dataJson.article);
+    const articlesHighlight = [];
+    for (const article of dataArticles.slice(0, 3)) {
+      const openGraphUrl = `/blog/${slugify(article.title)}-${article.id}.html`;
+      const articleWithHighlight = { ...article, openGraphUrl };
+      articlesHighlight.push(articleWithHighlight);
+    }
+    data.articlesHighlight = articlesHighlight;
+  }
+
   const mergedData = { ...dataGlobal, ...data };
   const htmlPage = nunjucks.render(templatePath, mergedData);
+
   if (!(await pathExists(path.dirname(dest)))) {
     await fs.mkdir(path.dirname(dest), { recursive: true });
   }
+
   if (isDev) {
     await fs.writeFile(dest, htmlPage);
-    console.info(`${path.basename(dest)} is created!`);
+    console.log(`${path.basename(dest)} is created!`);
   } else {
     const minified = await minify(htmlPage, {
       removeAttributeQuotes: true,
@@ -202,50 +211,8 @@ async function njkToHtmlDevOrMinify(
       removeComments: true,
     });
     await fs.writeFile(dest, minified);
-    console.info(
+    console.log(
       `The file ${path.basename(dest)} has been minified and created.`
     );
   }
 }
-async function njkToHtmlDevOrMinifyWithHighlightData(templatePath,
-  dest,
-  PathJson,
-  PathGlobaljson,
-  pathArticlesJson
-) {
- const [data,dataGlobal,dataArticles] = await Promise.all([
-    readJsonFile(PathJson),
-    readJsonFile(PathGlobaljson),
-    readJsonFile(pathArticlesJson),
-  ]);
- 
-  const articlesHighlight = [];
-  for (const article of dataArticles.slice(0, 3)) {
-    const openGraphUrl = `/blog/${slugify(article.title)}-${article.id}.html`;
-    const articleWithHighlight = { ...article, openGraphUrl };
-    articlesHighlight.push(articleWithHighlight);
-  }
- data.articlesHighlight = articlesHighlight;
-
-  const mergedData = { ...dataGlobal, ...data };
-  const htmlPage = nunjucks.render(templatePath, mergedData);
-  if (!(await pathExists(path.dirname(dest)))) {
-    await fs.mkdir(path.dirname(dest), { recursive: true });
-  }
-  if (isDev) {
-    await fs.writeFile(dest, htmlPage);
-    console.info(`${path.basename(dest)} is created!`);
-  } else {
-    const minified = await minify(htmlPage, {
-      removeAttributeQuotes: true,
-      collapseWhitespace: true,
-      removeComments: true,
-    });
-    await fs.writeFile(dest, minified);
-    console.info(
-      `The file ${path.basename(dest)} has been minified and created.`
-    ); 
-  }
-}
-
-
