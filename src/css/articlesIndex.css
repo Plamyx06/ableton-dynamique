@@ -1,0 +1,75 @@
+.body {
+    font-family: "futura-pt-medium";
+    font-size: 20px;
+}
+
+.container__cell {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 40px 100px 40px 100px;
+}
+
+.cell {
+
+    padding: 40px;
+    font-size: 30px;
+
+}
+
+.blog-teaser__category {
+    font-size: 18px;
+    color: #6dcbff;
+    padding: 10px 0px;
+}
+
+.blog-teaser__headline {
+    font-size: 20px;
+
+}
+
+.blog-teaser__img {
+    max-width: 500px;
+    max-height: 300px;
+    height: 300px;
+    width: 100%
+}
+
+
+
+.navbar-primary {
+    margin-left: 25px;
+    padding-bottom: 0px;
+}
+
+.navbar-primary__container::-webkit-scrollbar {
+    width: 0px;
+    height: 3px;
+    background-color: transparent;
+}
+
+.navbar-primary__container::-webkit-scrollbar-thumb {
+    background: #eee;
+    border-radius: 20px;
+}
+
+.navbar-primary__main-container {
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.navbar-primary__container {
+    overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+
+    padding-bottom: 20px;
+}
+
+.navbar-primary__txt {
+    padding: 0px 10px 0px 10px;
+}
+
+.orange-txt {
+    color: #ff764d;
+    padding: 0px 10px 0px 25px;
+}

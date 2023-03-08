@@ -40,23 +40,6 @@
                         </div>
                     </div>
                 </article>
-                <section class="section2">
-                    {% for teaser in articlesHighlightWithUrls %}
-                        <div class="blog-teaser__cell">
-                            <div class="cell">
-                                <a class="blog-teaser" href="{{teaser.openGraphUrl}}">
-                                    <div class="blog-teaser__img">
-                                        <img src="{{teaser.image}}" width="700" height="500" alt="">
-                                    </div>
-                                    <div class="blog-teaser__txt">
-                                        <h3 class="blog-teaser__category">{{teaser.category}}</h3>
-                                        <h2 class="blog-teaser__headline">{{teaser.title}}</h2>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </section>
             </main>
             {% include "./partial/footer.njk" %}
         </body>

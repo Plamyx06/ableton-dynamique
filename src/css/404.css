@@ -1,0 +1,21 @@
+.bars__primary {
+    display: flex;
+    flex-direction: column;
+
+    width: 75%;
+    padding: 20px;
+    margin: 150px auto;
+
+}
+
+.bars__primary__header {
+    font-size: 60px;
+}
+
+.body-text {
+    font-size: 30px;
+}
+
+strong {
+    color: blue
+}

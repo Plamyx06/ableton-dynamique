@@ -8,6 +8,10 @@
   src: url("https://cdn-resources.ableton.com/80bA26cPQ1hEJDFjpUKntxfqdmG3ZykO/static/fonts/futura-pt-book.2dadbb3c03c1.woff2") format("woff2");
 }
 
+* {
+  font-family: "futura-pt-medium";
+}
+
 .navbar--open {
   position: absolute;
   top: 70px;

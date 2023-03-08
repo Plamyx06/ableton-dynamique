@@ -1,0 +1,21 @@
+<html lang="en">
+    {% include "./partial/global.njk" %}
+    <header class="header">
+        {% include "./partial/navbar.njk" %}
+    </header>
+    <body>
+        <main>
+            <div class="bars">
+                <div class="bars__primary">
+                    <h1 class="bars__primary__header">The page you’re looking for does not exist.</h1>
+                    <div class="body-text acts-as-headline">
+                        <p>You could go back to the <a href="/">
+                                <strong>home page</strong>.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        {% include "./partial/footer.njk" %}
+    </body>
+</html>

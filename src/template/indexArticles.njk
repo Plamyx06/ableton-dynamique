@@ -1,0 +1,40 @@
+<html lang="en">
+    {% include "./partial/global.njk" %}
+    <body>
+        <header class="header">
+            {% include "./partial/navbar.njk" %}
+        </header>
+
+        <nav class="navbar-primary">
+            <div class=navbar-primary__main-container>
+                <div class="navbar-primary__container">
+                    <a class="navbar-primary__txt " href="https://www.ableton.com/fr/live/"> All posts</a>
+                    <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/all-new-features/"> Artists</a>
+                    <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/what-is-live/">News</a>
+                    <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/max-for-live/"> Downloads</a>
+                    <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/learn-live/"> Tutorials</a>
+                    <a class="navbar-primary__txt" href="https://www.ableton.com/en/live/integrated-hardware/"> Videos</a>
+                    <a class="navbar-primary__txt orange-txt" href="https://www.ableton.com/en/live/compare-editions/"> Loop </a>
+                    <a class="navbar-primary__txt blue-txt" href="https://www.ableton.com/en/shop/live/"> One Thing</a>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <div class="container__cell">
+                {% for teaser in dataArticles %}
+                    <div class="cell">
+                        <a class="blog-teaser" href="{{teaser.openGraphUrl}}">
+                            <div>
+                                <img class="blog-teaser__img" src="{{teaser.image}}" max-width="400" max-height="250" alt="">
+                            </div>
+                            <div class="blog-teaser__txt">
+                                <h3 class="blog-teaser__category">{{teaser.category}}</h3>
+                                <h2 class="blog-teaser__headline">{{teaser.title}}</h2>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+        {% include "./partial/footer.njk" %}
+    </body>

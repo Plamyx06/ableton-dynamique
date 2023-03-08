@@ -6,8 +6,8 @@
         "href": "https://www.ableton.com/en/push/"
       },
       {
-        "title": "Link",
-        "href": "https://www.ableton.com/en/link/"
+        "title": "Blog",
+        "href": "/blog/"
       },
       {
         "title": "Shop",
@@ -28,7 +28,7 @@
     },
     "navlinkLogIn": {
       "title": "Login or register",
-      "href": "/login.html"
+      "href": "/login"
     },
     "navbarButton": {
       "title": "More",
