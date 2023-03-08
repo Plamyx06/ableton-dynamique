@@ -63,7 +63,6 @@ async function isFile(filePath) {
     return false;
   }
 }
-
 async function isDir(filePath) {
   try {
     const stat = await fs.stat(filePath);
