@@ -8,6 +8,7 @@
     "@sindresorhus/slugify": "^2.2.0",
     "clean-css-promise": "^3.0.0",
     "html-minifier-terser": "^7.1.0",
+    "mime-types": "^2.1.35",
     "nanoid": "^4.0.1",
     "nunjucks": "^3.2.3",
     "terser": "^5.16.3"

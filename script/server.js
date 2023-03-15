@@ -1,51 +1,43 @@
-
 import http from "http";
 import fs from "fs/promises";
 import path from "path";
-
+import mime from "mime-types";
 
 const server = http.createServer(async (request, response) => {
-  let contentType = "text/html"
+  let contentType = "text/html";
   if (request.method === "GET") {
+    const RequestUrl = request.url;
+    const extname = path.extname(RequestUrl);
 
-    const url = request.url;
-    let filePath = `./dist${url}`;
-
-    if (filePath.endsWith(".css")) {
-      contentType = "text/css";
-    } else if (filePath.endsWith(".js")) {
-      contentType = "application/javascript";
-    }
-
-    console.log(await isDir(filePath))
+    let filePath = `./dist${RequestUrl}`;
     if (await isDir(filePath)) {
-      filePath += "/index";
+      filePath += "index";
     }
-    if (url === "/blog/404.css") {
-      filePath = "./dist/404.css"
-    }
-    if (!filePath.endsWith(".js") && !filePath.endsWith(".css")) {
-      filePath = filePath + ".html";
-    }
+    if (extname === "") {
+      filePath += ".html";
 
-    if ((await pathExists(filePath)) && (await isFile(filePath))) {
-
-      const content = await fs.readFile(filePath, "utf-8");
-      response.setHeader("Content-type", contentType);
-      response.end(content);
+      if ((await pathExists(filePath)) && (await isFile(filePath))) {
+        await renderContent(response, filePath, contentType);
+      } else {
+        await render404(response, filePath, contentType);
+      }
+    } else if (
+      (await pathExists(filePath)) &&
+      (await isFile(filePath)) &&
+      extname !== ".html"
+    ) {
+      await renderContent(response, filePath, contentType);
     } else {
-      const content = await fs.readFile("./dist/404.html", "utf-8");
-      response.setHeader("Content-type", contentType);
-      response.statusCode = 404;
-      response.end(content);
+      await render404(response, filePath, contentType);
     }
+  } else {
+    await render404(response, filePath, contentType);
   }
-}
-);
+});
 
-server.listen(3000), () => {
+server.listen(3000, () => {
   console.log("http://localhost:3000");
-}
+});
 
 async function pathExists(path) {
   try {
@@ -70,4 +62,17 @@ async function isDir(filePath) {
   } catch (error) {
     return false;
   }
+}
+async function render404(response, filePath, contentType) {
+  contentType = mime.contentType(path.extname(filePath));
+  const content = await fs.readFile("./dist/404.html", "utf-8");
+  response.setHeader("Content-type", contentType);
+  response.statusCode = 404;
+  response.end(content);
+}
+async function renderContent(response, filePath, contentType) {
+  contentType = mime.contentType(path.extname(filePath));
+  const content = await fs.readFile(filePath, "utf-8");
+  response.setHeader("Content-type", contentType);
+  response.end(content);
 }
