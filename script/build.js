@@ -17,7 +17,6 @@ const apiArticlesCategory = await getApiData("/api/articles-categories");
 const apiFooter = await getApiData("/api/footer");
 const apiHeader = await getApiData("/api/header");
 const apiFooterHeaderMerged = { ...apiHeader, ...apiFooter };
-console.log({ apiFooterHeaderMerged });
 
 const dataHomepage = await getDataIndex("./src/data/index.json", apiArticles);
 const dataLogin = await mergedDataWithGlobal("./src/data/login.json");
@@ -206,6 +205,7 @@ async function njkToHtml(templatePath, dest, data) {
   }
 }
 async function addOpengraphUrlToArticle(apiArticles) {
+  const dataCategory = apiArticlesCategory;
   const dataArticles = apiArticles;
   const articles = [];
   for (const article of dataArticles) {
@@ -213,9 +213,17 @@ async function addOpengraphUrlToArticle(apiArticles) {
       article.title,
       article.id
     )}`;
-    const articleWithUrl = { ...article, openGraphUrl };
-    articles.push(articleWithUrl);
+    const categoryId = article.categoryId;
+
+    const category = dataCategory.find((cat) => cat.categoryId === categoryId);
+    const articleWithUrlAndCategory = {
+      ...article,
+      openGraphUrl,
+      category: category.name,
+    };
+    articles.push(articleWithUrlAndCategory);
   }
+  console.log({ articles });
   return articles;
 }
 
