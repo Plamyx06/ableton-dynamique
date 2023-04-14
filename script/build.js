@@ -5,17 +5,21 @@ import cleanCSS from "clean-css-promise";
 import { minify as minifyJS } from "terser";
 import path from "path";
 import slugify from "@sindresorhus/slugify";
+import https from "https";
 
 nunjucks.configure({ autoescape: true });
 
 const args = process.argv.slice(2);
 const isDev = args[0] === "dev";
 
-const dataIndex = await getDataIndex(
-  "./src/data/index.json",
-  "./src/data/global.json",
-  "./src/data/articles.json"
-);
+const apiArticles = await getApiData("/api/articles");
+const apiArticlesCategory = await getApiData("/api/articles-categories");
+const apiFooter = await getApiData("/api/footer");
+const apiHeader = await getApiData("/api/header");
+const apiFooterHeaderMerged = { ...apiHeader, ...apiFooter };
+console.log({ apiFooterHeaderMerged });
+
+const dataHomepage = await getDataIndex("./src/data/index.json", apiArticles);
 const dataLogin = await mergedDataWithGlobal("./src/data/login.json");
 const data404 = await mergedDataWithGlobal("./src/data/404.json");
 
@@ -56,7 +60,7 @@ async function main() {
         dist: "./dist/global.js",
       },
     ]),
-    njkToHtml("./src/template/index.njk", "./dist/index.html", dataIndex),
+    njkToHtml("./src/template/index.njk", "./dist/index.html", dataHomepage),
     njkToHtml(
       "./src/template/indexArticles.njk",
       "./dist/blog/index.html",
@@ -69,20 +73,17 @@ async function main() {
   ]);
 }
 main();
+
 async function handleArticlesIndex(destPath) {
-  const dataArticles = await addOpengraphUrlToArticle(
-    "./src/data/articles.json"
-  );
-  const dataGlobal = await readJsonFile("./src/data/global.json");
+  const dataArticles = await addOpengraphUrlToArticle(apiArticles);
+  const dataGlobal = apiFooterHeaderMerged;
   const dataArticlesIndex = await readJsonFile("./src/data/articlesIndex.json");
   const mergedData = { dataArticles, ...dataGlobal, ...dataArticlesIndex };
   await njkToHtml("./src/template/indexArticles.njk", destPath, mergedData);
 }
 async function handleArticlePages(templatePath) {
-  const dataGlobal = await readJsonFile("./src/data/global.json");
-  const dataArticles = await addOpengraphUrlToArticle(
-    "./src/data/articles.json"
-  );
+  const dataGlobal = apiFooterHeaderMerged;
+  const dataArticles = await addOpengraphUrlToArticle(apiArticles);
   for (const article of dataArticles) {
     const data = {
       head: {
@@ -168,20 +169,17 @@ async function createArticleSlug(title, id) {
   return `${slugify(title)}-${id}`;
 }
 async function mergedDataWithGlobal(pathData) {
-  const [data, dataGlobal] = await Promise.all([
-    readJsonFile(pathData),
-    readJsonFile("./src/data/global.json"),
-  ]);
+  const data = await readJsonFile(pathData);
 
+  const dataGlobal = apiFooterHeaderMerged;
   const mergedData = { ...data, ...dataGlobal };
   return mergedData;
 }
-async function getDataIndex(pathDataIndex, pathDataGlobal, pathDataArticles) {
-  const [dataIndex, dataGlobal] = await Promise.all([
-    readJsonFile(pathDataIndex),
-    readJsonFile(pathDataGlobal),
-  ]);
-  const dataArticles = await addOpengraphUrlToArticle(pathDataArticles);
+async function getDataIndex(pathDataIndex, apiArticles) {
+  const dataIndex = await readJsonFile(pathDataIndex);
+
+  const dataGlobal = apiFooterHeaderMerged;
+  const dataArticles = await addOpengraphUrlToArticle(apiArticles);
   const articlesHighlight = dataArticles.slice(0, 3);
 
   const mergedData = { ...dataGlobal, ...dataIndex, articlesHighlight };
@@ -207,8 +205,8 @@ async function njkToHtml(templatePath, dest, data) {
     await fs.writeFile(dest, minified);
   }
 }
-async function addOpengraphUrlToArticle(pathArticles) {
-  const dataArticles = await readJsonFile(pathArticles);
+async function addOpengraphUrlToArticle(apiArticles) {
+  const dataArticles = apiArticles;
   const articles = [];
   for (const article of dataArticles) {
     const openGraphUrl = `/blog/${await createArticleSlug(
@@ -219,4 +217,31 @@ async function addOpengraphUrlToArticle(pathArticles) {
     articles.push(articleWithUrl);
   }
   return articles;
+}
+
+async function getApiData(apiPath) {
+  const options = {
+    hostname: "admin-ableton.up.railway.app",
+    path: apiPath,
+    method: "GET",
+  };
+
+  return new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let data = "";
+      res.on("data", (chunk) => {
+        data += chunk;
+      });
+      res.on("end", () => {
+        const dataParse = JSON.parse(data);
+        resolve(dataParse);
+      });
+    });
+
+    req.on("error", (error) => {
+      reject(error);
+    });
+
+    req.end();
+  });
 }

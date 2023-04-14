@@ -2,11 +2,9 @@ import http from "http";
 import fs from "fs/promises";
 import path from "path";
 import mime from "mime-types";
-import https from "https"
+import https from "https";
 
-
-
-const PORT = 3000
+const PORT = 3020;
 
 const server = http.createServer(async (request, response) => {
   try {
@@ -29,40 +27,6 @@ async function handleServer(request, response) {
   let contentType = "text/html";
   if (request.method === "GET") {
     const RequestUrl = request.url;
-
-    if (RequestUrl === "/blog/") {
-      const options = {
-        hostname: 'admin-ableton.up.railway.app',
-        path: '/api/articles',
-        method: 'GET'
-      };
-
-      const req = https.request(options, (res) => {
-        let data = '';
-
-        res.on('data', (chunk) => {
-          data += chunk;
-        });
-
-        res.on('end', () => {
-          const articles = JSON.parse(data)
-          const filePath = "./src/data/articlesApi.json";
-          fs.writeFile(filePath, JSON.stringify(articles, null, 2), (err) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            return filePath
-          });
-        });
-      });
-
-      req.on('error', (error) => {
-        console.error(error);
-      });
-      console.log(`Les données ont été écrites dans le fichier articlesApi.json`)
-      req.end();
-    }
 
     const extname = path.extname(RequestUrl);
 
@@ -87,12 +51,10 @@ async function handleServer(request, response) {
     } else {
       await render404(response, filePath, contentType);
     }
-  }
-
-  else {
+  } else {
     await render404(response, filePath, contentType);
   }
-};
+}
 
 server.listen(3000, () => {
   console.log("http://localhost:3000");

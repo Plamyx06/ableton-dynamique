@@ -4,13 +4,13 @@
         <div class="main-footer__contain1">
             <div class="main-footer__listlink2">
                 <h3>
-                    <strong>{{footer.mainFooter1.title}}</strong>
+                    <strong>Sign up to our newsletter</strong>
                 </h3>
-                <div class="main-footer__txt3">{{mainFooter1.helpTxt}}</div>
+                <div class="main-footer__txt3">Enter your email address to stay up to date with the latest offers, tutorials, downloads, surveys and more.</div>
             </div>
             <div class="main-footer__email">
-                <input name="email" type="email" placeholder="{{footer.mainFooter1.placeholder}}"/>
-                <button class="main-footer__email__button">{{footer.mainFooter1.button}}</button>
+                <input name="email" type="email" placeholder="Email Address"/>
+                <button class="main-footer__email__button">Sign up</button>
             </div>
         </div>
         <div class="main-footer__contain2">
@@ -40,9 +40,9 @@
         </div>
         <div class="main-footer__contain3">
             <div class="main-footer__listlink2">
-                <h3>{{footer.footer3.mainTitle}}</h3>
+                <h3>{{footer.footer2.mainTitle}}</h3>
                 <ul>
-                    {% for listLink in footer.mainFooter3 %}
+                    {% for listLink in footer.mainFooter2 %}
                         <li>
                             <a href="{{listLink.href}}">{{listLink.title}}</a>
                         </li>

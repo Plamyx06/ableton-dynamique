@@ -2,12 +2,13 @@
   "scripts": {
     "generate": "node script/build.js",
     "dev": "http-server -c-1 ./dist",
-    "serve": "nodemon script/server.js"
+    "serve": "nodemon script/server.js --watch ./src/template --exec 'npm run generate'"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.2.0",
     "clean-css-promise": "^3.0.0",
     "html-minifier-terser": "^7.1.0",
+    "https": "^1.0.0",
     "mime-types": "^2.1.35",
     "nanoid": "^4.0.1",
     "nunjucks": "^3.2.3",
