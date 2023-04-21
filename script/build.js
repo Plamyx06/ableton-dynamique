@@ -223,7 +223,7 @@ async function addOpengraphUrlToArticle(apiArticles) {
     };
     articles.push(articleWithUrlAndCategory);
   }
-  console.log({ articles });
+
   return articles;
 }
 
@@ -232,6 +232,9 @@ async function getApiData(apiPath) {
     hostname: "admin-ableton.up.railway.app",
     path: apiPath,
     method: "GET",
+    headers: {
+      authorization: `lemotdepassecpasse`,
+    },
   };
 
   return new Promise((resolve, reject) => {
