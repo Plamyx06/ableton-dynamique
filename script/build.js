@@ -5,9 +5,11 @@ import cleanCSS from "clean-css-promise";
 import { minify as minifyJS } from "terser";
 import path from "path";
 import slugify from "@sindresorhus/slugify";
-import https from "https";
 
-nunjucks.configure({ autoescape: true });
+let env = nunjucks.configure({
+  noCache: true,
+});
+env.addFilter("getPropertyById", getPropertyById);
 
 const args = process.argv.slice(2);
 const isDev = args[0] === "dev";
@@ -16,11 +18,19 @@ const apiArticles = await getApiData("/api/articles");
 const apiArticlesCategory = await getApiData("/api/articles-categories");
 const apiFooter = await getApiData("/api/footer");
 const apiHeader = await getApiData("/api/header");
-const apiFooterHeaderMerged = { ...apiHeader, ...apiFooter };
-
-const dataHomepage = await getDataIndex("./src/data/index.json", apiArticles);
-const dataLogin = await mergedDataWithGlobal("./src/data/login.json");
-const data404 = await mergedDataWithGlobal("./src/data/404.json");
+const apiFooterHeaderMerged = { apiHeader, apiFooter };
+const dataHomepage = await getDataIndex(
+  "./src/data/index.json",
+  await getApiData("/api/articles")
+);
+const dataLogin = {
+  ...(await readJsonFile("./src/data/login.json")),
+  ...apiFooterHeaderMerged,
+};
+const data404 = {
+  ...(await readJsonFile("./src/data/404.json")),
+  ...apiFooterHeaderMerged,
+};
 
 async function main() {
   await fs.rm("./dist", { recursive: true, force: true });
@@ -60,10 +70,11 @@ async function main() {
       },
     ]),
     njkToHtml("./src/template/index.njk", "./dist/index.html", dataHomepage),
+
     njkToHtml(
       "./src/template/indexArticles.njk",
       "./dist/blog/index.html",
-      dataLogin
+      dataHomepage
     ),
     njkToHtml("./src/template/login.njk", "./dist/login.html", dataLogin),
     njkToHtml("./src/template/404.njk", "./dist/404.html", data404),
@@ -82,6 +93,7 @@ async function handleArticlesIndex(destPath) {
 }
 async function handleArticlePages(templatePath) {
   const dataGlobal = apiFooterHeaderMerged;
+  const dataCategory = apiArticlesCategory;
   const dataArticles = await addOpengraphUrlToArticle(apiArticles);
   for (const article of dataArticles) {
     const data = {
@@ -96,6 +108,7 @@ async function handleArticlePages(templatePath) {
       },
       article,
       ...dataGlobal,
+      dataCategory,
     };
     const dest = `./dist${data.head.openGraphUrl}.html`;
 
@@ -167,13 +180,6 @@ async function handleCSS(arrOfSrcAndDest) {
 async function createArticleSlug(title, id) {
   return `${slugify(title)}-${id}`;
 }
-async function mergedDataWithGlobal(pathData) {
-  const data = await readJsonFile(pathData);
-
-  const dataGlobal = apiFooterHeaderMerged;
-  const mergedData = { ...data, ...dataGlobal };
-  return mergedData;
-}
 async function getDataIndex(pathDataIndex, apiArticles) {
   const dataIndex = await readJsonFile(pathDataIndex);
 
@@ -186,22 +192,27 @@ async function getDataIndex(pathDataIndex, apiArticles) {
   return mergedData;
 }
 async function njkToHtml(templatePath, dest, data) {
-  const htmlPage = nunjucks.render(templatePath, data);
+  try {
+    const htmlPage = nunjucks.render(templatePath, data);
 
-  if (!(await pathExists(path.dirname(dest)))) {
-    await fs.mkdir(path.dirname(dest), { recursive: true });
-  }
+    if (!(await pathExists(path.dirname(dest)))) {
+      await fs.mkdir(path.dirname(dest), { recursive: true });
+    }
 
-  if (isDev) {
-    await fs.writeFile(dest, htmlPage);
-  } else {
-    const minified = await minify(htmlPage, {
-      removeAttributeQuotes: true,
-      collapseWhitespace: true,
-      removeComments: true,
-    });
+    if (isDev) {
+      await fs.writeFile(dest, htmlPage);
+    } else {
+      const minified = await minify(htmlPage, {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      });
 
-    await fs.writeFile(dest, minified);
+      await fs.writeFile(dest, minified);
+    }
+  } catch (error) {
+    // Gérer l'erreur ici
+    console.error("Une erreur s'est produite :", error);
   }
 }
 async function addOpengraphUrlToArticle(apiArticles) {
@@ -226,33 +237,27 @@ async function addOpengraphUrlToArticle(apiArticles) {
 
   return articles;
 }
-
 async function getApiData(apiPath) {
+  const url = `https://admin-ableton.up.railway.app${apiPath}`;
+
   const options = {
-    hostname: "admin-ableton.up.railway.app",
-    path: apiPath,
     method: "GET",
     headers: {
-      authorization: `lemotdepassecpasse`,
+      Authorization: "lemotdepassecpasse",
     },
   };
 
-  return new Promise((resolve, reject) => {
-    const req = https.request(options, (res) => {
-      let data = "";
-      res.on("data", (chunk) => {
-        data += chunk;
-      });
-      res.on("end", () => {
-        const dataParse = JSON.parse(data);
-        resolve(dataParse);
-      });
-    });
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw new Error(error);
+  }
+}
+function getPropertyById(id, data) {
+  const result = data.find((item) => item.id === id);
 
-    req.on("error", (error) => {
-      reject(error);
-    });
-
-    req.end();
-  });
+  return result.name;
 }

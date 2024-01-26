@@ -2,7 +2,6 @@ import http from "http";
 import fs from "fs/promises";
 import path from "path";
 import mime from "mime-types";
-import https from "https";
 
 const PORT = 3020;
 

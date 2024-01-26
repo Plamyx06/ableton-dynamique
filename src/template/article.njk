@@ -1,5 +1,8 @@
 <html lang="en">
-    {% include "./partial/global.njk" %}
+    {%block head%}
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    {% endblock %}{% include "./partial/global.njk" %}
+
     <body>
         <header class="header">
             {% include "./partial/navbar.njk" %}
@@ -22,7 +25,7 @@
             <main>
                 <article class="article">
                     <div class="article__title">
-                        <h2>{{article.categoryId}}</h2>
+                        <h2>{{(article.category_id | getPropertyById(dataCategory))}}</h2>
                         <h1 class="article__main-title">{{article.title}}</h1>
                     </div>
 
@@ -32,8 +35,8 @@
                         </div>
 
                         <a href="{{head.openGraphUrl}}"><img src="{{article.image}}"class="article__img"/></a>
-                        <div>
-                            <p class="article__content">{{article.content}}</p>
+                        <div class="prose prose-a:text-blue-600 max-w-none prose-lg">
+                            {{article.content | safe}}
                         </div>
                         <div>
                             <a class="article__tags">{{article.tags}}</a>

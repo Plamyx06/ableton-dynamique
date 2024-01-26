@@ -16,7 +16,7 @@
         <div class="main-footer__contain2">
             <div class="main-footer__linklist1">
                 <ul class="main-footer__linklist1__txt">
-                    {% for linkList in footer.mainFooter2 %}
+                    {% for linkList in apiFooter.slice(0, 3) %}
                         <li>
                             <a href="{{linkList.href}}">{{linkList.title}}</a>
                         </li>
@@ -40,9 +40,12 @@
         </div>
         <div class="main-footer__contain3">
             <div class="main-footer__listlink2">
-                <h3>{{footer.footer2.mainTitle}}</h3>
+                <h3>
+                    <b>{{apiFooter[3].main_title}}
+                    </b>
+                </h3>
                 <ul>
-                    {% for listLink in footer.mainFooter2 %}
+                    {% for listLink in apiFooter.slice(3, 6) %}
                         <li>
                             <a href="{{listLink.href}}">{{listLink.title}}</a>
                         </li>
